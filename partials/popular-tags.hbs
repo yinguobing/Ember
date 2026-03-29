@@ -1,16 +1,36 @@
 {{!-- Popular Tags Section - 使用 tag feature_image 作为背景 --}}
-<section class="gh-popular-tags">
-    <h2 class="gh-section-title">{{t "热门标签"}}</h2>
-    <div class="gh-tags-cloud">
-        {{#get "tags" include="count.posts" order="count.posts desc" limit="10"}}
-        {{#foreach tags}}
-        <a href="{{url}}" class="gh-tag-item"
-            style="{{#if feature_image}}background-image: url('{{img_url feature_image size=" m"}}');{{/if}}{{#if
-            accent_color}} --tag-accent-color: {{accent_color}};{{/if}}">
-            <span class="gh-tag-overlay"></span>
-            <span class="gh-tag-name">{{name}}</span>
-        </a>
-        {{/foreach}}
-        {{/get}}
-    </div>
-</section>
+{{#if @custom.tag_slugs_for_popular_tags}}
+    {{!-- 使用配置的 tag slugs --}}
+    {{#get "tags" filter="slug:[{{@custom.tag_slugs_for_popular_tags}}]" include="count.posts"}}
+        {{#if tags}}
+        <section class="gh-popular-tags">
+            <h2 class="gh-section-title">{{t "热门标签"}}</h2>
+            <div class="gh-tags-cloud">
+                {{#foreach tags}}
+                <a href="{{url}}" class="gh-tag-item"
+                    style="{{#if feature_image}}background-image: url('{{img_url feature_image size="m"}}');{{/if}}{{#if accent_color}} --tag-accent-color: {{accent_color}};{{/if}}">
+                    <span class="gh-tag-overlay"></span>
+                    <span class="gh-tag-name">{{name}}</span>
+                </a>
+                {{/foreach}}
+            </div>
+        </section>
+        {{/if}}
+    {{/get}}
+{{else}}
+    {{!-- 默认：使用文章数最多的 tags --}}
+    <section class="gh-popular-tags">
+        <h2 class="gh-section-title">{{t "热门标签"}}</h2>
+        <div class="gh-tags-cloud">
+            {{#get "tags" include="count.posts" order="count.posts desc" limit="10"}}
+            {{#foreach tags}}
+            <a href="{{url}}" class="gh-tag-item"
+                style="{{#if feature_image}}background-image: url('{{img_url feature_image size="m"}}');{{/if}}{{#if accent_color}} --tag-accent-color: {{accent_color}};{{/if}}">
+                <span class="gh-tag-overlay"></span>
+                <span class="gh-tag-name">{{name}}</span>
+            </a>
+            {{/foreach}}
+            {{/get}}
+        </div>
+    </section>
+{{/if}}
