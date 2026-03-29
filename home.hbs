@@ -4,17 +4,71 @@
     {{!-- Hero Section --}}
     {{> "hero-section"}}
     
-    {{!-- Featured Slider - 显示标记为精选的文章 --}}
-    {{#get "posts" include="tags,authors" filter="featured:true" limit="5"}}
+    {{!-- Featured Slider --}}
+    {{#get "posts" filter="featured:true" limit="5"}}
         {{#if posts}}
-            {{> "featured-slider" slider_posts=posts}}
+            <section class="gh-featured-slider">
+                <div class="gh-featured-slider-inner">
+                    {{!-- 左侧文字内容 --}}
+                    <div class="gh-featured-slider-content">
+                        {{#foreach posts}}
+                            <div class="gh-featured-slide" data-index="{{@index}}">
+                                <div class="gh-featured-slide-inner">
+                                    {{#primary_tag}}
+                                        <a href="{{url}}" class="gh-featured-slide-tag" style="background-color: {{#if accent_color}}{{accent_color}}{{else}}var(--ghost-accent-color){{/if}};">{{name}}</a>
+                                    {{/primary_tag}}
+                                    <h2 class="gh-featured-slide-title"><a href="{{url}}">{{title}}</a></h2>
+                                    {{#if excerpt}}
+                                        <p class="gh-featured-slide-excerpt">{{excerpt words="30"}}</p>
+                                    {{/if}}
+                                    <div class="gh-featured-slide-meta">
+                                        <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                                        <span class="gh-meta-sep">&middot;</span>
+                                        <span>{{reading_time}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/foreach}}
+                    </div>
+                    
+                    {{!-- 右侧图片 --}}
+                    <div class="gh-featured-slider-images">
+                        {{#foreach posts}}
+                            <div class="gh-featured-slide-image" data-index="{{@index}}">
+                                {{#if feature_image}}
+                                    <a href="{{url}}">
+                                        <img src="{{img_url feature_image size="l"}}" alt="{{title}}" loading="lazy">
+                                    </a>
+                                {{/if}}
+                            </div>
+                        {{/foreach}}
+                    </div>
+                    
+                    {{!-- 导航按钮 --}}
+                    <div class="gh-featured-slider-nav">
+                        <button class="gh-slider-prev" aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </button>
+                        <button class="gh-slider-next" aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+                    
+                    {{!-- 指示器 --}}
+                    <div class="gh-featured-slider-dots">
+                        {{#foreach posts}}
+                            <button class="gh-slider-dot" data-index="{{@index}}"></button>
+                        {{/foreach}}
+                    </div>
+                </div>
+            </section>
         {{/if}}
     {{/get}}
     
     <div class="gh-inner">
         {{!-- What's New Section - 三栏布局 --}}
         <section class="gh-section gh-whats-new">
-            <h2 class="gh-section-title">{{t "What's New?"}}</h2>
+            <h2 class="gh-section-title">What's New?</h2>
             
             <div class="gh-home-grid">
                 {{!-- 第一栏：大文章 --}}
@@ -45,7 +99,7 @@
         
         {{!-- More Posts Grid --}}
         <section class="gh-section gh-more-posts">
-            <h2 class="gh-section-title">{{t "More Articles"}}</h2>
+            <h2 class="gh-section-title">More Articles</h2>
             <div class="gh-posts-grid">
                 {{#foreach posts from="5" limit="6"}}
                     {{> "loop-grid"}}
@@ -54,7 +108,7 @@
             
             <footer class="gh-topic-footer">
                 {{#match pagination.pages ">" 1}}
-                    <a class="gh-topic-link" href="{{@site.url}}/page/2">{{t "Show more"}} {{> "icons/arrow"}}</a>
+                    <a class="gh-topic-link" href="{{@site.url}}/page/2">Show more {{> "icons/arrow"}}</a>
                 {{/match}}
             </footer>
         </section>
