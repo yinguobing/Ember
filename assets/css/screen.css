@@ -1133,7 +1133,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 /* Featured Slider */
 .gh-featured-slider {
     margin-top: 80px;
-    padding: 40px 0 60px;
+    padding: 40px 0 0;
     background: var(--color-white);
 }
 
