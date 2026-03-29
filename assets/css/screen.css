@@ -1176,8 +1176,8 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 
 .gh-featured-slider-controls .gh-slider-prev,
 .gh-featured-slider-controls .gh-slider-next {
-    width: 36px;
-    height: 36px;
+    width: 24px;
+    height: 24px;
     border: none;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.2);
