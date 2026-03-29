@@ -1149,10 +1149,20 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px;
+    padding: 0;
     position: relative;
     background-color: #16213E;
     border-radius: 8px;
+    overflow: hidden;
+}
+
+.gh-featured-slider-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    min-height: 400px;
+    padding: 40px;
 }
 
 .gh-featured-slider-inner .gh-featured-slide-title a {
@@ -1165,14 +1175,6 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 
 .gh-featured-slider-inner .gh-featured-slide-meta {
     color: rgba(255, 255, 255, 0.7);
-}
-
-.gh-featured-slider-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    min-height: 400px;
 }
 
 .gh-featured-slide {
@@ -1633,7 +1635,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 
     .gh-featured-slider-content {
         min-height: auto;
-        padding: 20px 0;
+        padding: 20px;
     }
 
     .gh-featured-slide-title {

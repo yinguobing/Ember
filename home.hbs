@@ -49,29 +49,6 @@
                         {{/if}}
                     </div>
                     {{/foreach}}
-
-                    {{!-- 指示器 --}}
-                    <div class="gh-featured-slider-dots">
-                        {{#foreach posts}}
-                        <button class="gh-slider-dot" data-index="{{@index}}"></button>
-                        {{/foreach}}
-                    </div>
-
-                    {{!-- 导航按钮 --}}
-                    <div class="gh-featured-slider-nav">
-                        <button class="gh-slider-prev" aria-label="Previous">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                        </button>
-                        <button class="gh-slider-next" aria-label="Next">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
-                        </button>
-                    </div>
                 </div>
 
                 {{!-- 文字内容 --}}
@@ -95,6 +72,29 @@
                         </div>
                     </div>
                     {{/foreach}}
+
+                    {{!-- 指示器 --}}
+                    <div class="gh-featured-slider-dots">
+                        {{#foreach posts}}
+                        <button class="gh-slider-dot" data-index="{{@index}}"></button>
+                        {{/foreach}}
+                    </div>
+
+                    {{!-- 导航按钮 --}}
+                    <div class="gh-featured-slider-nav">
+                        <button class="gh-slider-prev" aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="gh-slider-next" aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
