@@ -1010,18 +1010,6 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     transform: translateY(-2px);
 }
 
-.gh-tag-name {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--color-darker-gray);
-}
-
-.gh-tag-count {
-    margin-top: 8px;
-    font-size: 1.3rem;
-    color: var(--color-secondary-text);
-}
-
 /* Past Posts / More Topics Section */
 .gh-past-posts .gh-topic-list {
     margin-top: 0;
@@ -1073,8 +1061,13 @@ body:not(.home-template) .gh-topic-grid .gh-card {
         padding: 24px 20px;
     }
 
-    .gh-tag-name {
-        font-size: 1.6rem;
+    .gh-tags-cloud {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .gh-tag-item {
+        font-size: 1.4rem;
     }
 }
 
@@ -1139,6 +1132,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 
 /* Featured Slider */
 .gh-featured-slider {
+    margin-top: 80px;
     padding: 40px 0 60px;
     background: var(--color-white);
 }
@@ -1566,44 +1560,54 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 .gh-popular-tags {
     margin-top: 80px;
     padding: 40px 0;
-    border-top: 1px solid var(--color-light-gray);
-    border-bottom: 1px solid var(--color-light-gray);
 }
 
 .gh-tags-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
 }
 
 .gh-tag-item {
-    display: inline-flex;
+    position: relative;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    font-size: 1.4rem;
-    font-weight: 500;
-    color: var(--color-darker-gray);
-    background: var(--color-white);
-    border: 1px solid var(--color-light-gray);
-    border-radius: 25px;
+    justify-content: center;
+    aspect-ratio: 4 / 3;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--color-white);
+    background-color: var(--color-light-gray);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease;
+    overflow: hidden;
+}
+
+/* 深色遮罩层 */
+.gh-tag-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    transition: background 0.2s ease;
+}
+
+.gh-tag-item:hover .gh-tag-overlay {
+    background: rgba(0, 0, 0, 0.35);
 }
 
 .gh-tag-item:hover {
-    border-color: var(--ghost-accent-color);
-    color: var(--ghost-accent-color);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.gh-tag-count {
-    font-size: 1.2rem;
-    color: var(--color-secondary-text);
-    background: var(--color-light-gray);
-    padding: 2px 8px;
-    border-radius: 12px;
+.gh-tag-name {
+    position: relative;
+    z-index: 1;
+    color: var(--color-white);
+    text-align: center;
+    padding: 0 12px;
 }
 
 /* More Posts Grid */

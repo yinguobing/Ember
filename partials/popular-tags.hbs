@@ -1,14 +1,16 @@
-{{!-- Popular Tags Section - 参考 Imperia 设计 --}}
+{{!-- Popular Tags Section - 使用 tag feature_image 作为背景 --}}
 <section class="gh-popular-tags">
-    <h3 class="gh-section-subtitle">{{t "Popular Tags"}}</h3>
+    <h2 class="gh-section-title">{{t "热门标签"}}</h2>
     <div class="gh-tags-cloud">
         {{#get "tags" include="count.posts" order="count.posts desc" limit="10"}}
-            {{#foreach tags}}
-                <a href="{{url}}" class="gh-tag-item" style="{{#if accent_color}}border-color: {{accent_color}}; color: {{accent_color}}{{/if}}">
-                    <span class="gh-tag-name">{{name}}</span>
-                    <span class="gh-tag-count">{{count.posts}}</span>
-                </a>
-            {{/foreach}}
+        {{#foreach tags}}
+        <a href="{{url}}" class="gh-tag-item"
+            style="{{#if feature_image}}background-image: url('{{img_url feature_image size=" m"}}');{{/if}}{{#if
+            accent_color}} --tag-accent-color: {{accent_color}};{{/if}}">
+            <span class="gh-tag-overlay"></span>
+            <span class="gh-tag-name">{{name}}</span>
+        </a>
+        {{/foreach}}
         {{/get}}
     </div>
 </section>
