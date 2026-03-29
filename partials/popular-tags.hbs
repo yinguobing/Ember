@@ -1,0 +1,14 @@
+{{!-- Popular Tags Section - 参考 Imperia 设计 --}}
+<section class="gh-popular-tags">
+    <h3 class="gh-section-subtitle">{{t "Popular Tags"}}</h3>
+    <div class="gh-tags-cloud">
+        {{#get "tags" include="count.posts" order="count.posts desc" limit="10"}}
+            {{#foreach tags}}
+                <a href="{{url}}" class="gh-tag-item" style="{{#if accent_color}}border-color: {{accent_color}}; color: {{accent_color}}{{/if}}">
+                    <span class="gh-tag-name">{{name}}</span>
+                    <span class="gh-tag-count">{{count.posts}}</span>
+                </a>
+            {{/foreach}}
+        {{/get}}
+    </div>
+</section>

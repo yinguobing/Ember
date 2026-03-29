@@ -1,0 +1,12 @@
+{{!-- Hero Section - 参考 Imperia 设计 --}}
+<section class="gh-hero-section">
+    <div class="gh-hero-inner">
+        <h1 class="gh-hero-title">
+            {{#if @custom.hero_title}}
+                {{@custom.hero_title}}
+            {{else}}
+                {{@site.description}}
+            {{/if}}
+        </h1>
+    </div>
+</section>

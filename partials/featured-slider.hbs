@@ -1,0 +1,56 @@
+{{!-- Featured Slider - 参考 Imperia 设计 --}}
+<section class="gh-featured-slider">
+    <div class="gh-featured-slider-inner">
+        {{!-- 左侧文字内容 --}}
+        <div class="gh-featured-slider-content">
+            {{#foreach posts limit="5"}}
+                <div class="gh-featured-slide" data-index="{{@index}}">
+                    <div class="gh-featured-slide-inner">
+                        {{#primary_tag}}
+                            <a href="{{url}}" class="gh-featured-slide-tag" style="background-color: {{#if accent_color}}{{accent_color}}{{else}}var(--ghost-accent-color){{/if}};">{{name}}</a>
+                        {{/primary_tag}}
+                        <h2 class="gh-featured-slide-title"><a href="{{url}}">{{title}}</a></h2>
+                        {{#if excerpt}}
+                            <p class="gh-featured-slide-excerpt">{{excerpt words="30"}}</p>
+                        {{/if}}
+                        <div class="gh-featured-slide-meta">
+                            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                            <span class="gh-meta-sep">&middot;</span>
+                            <span>{{reading_time}}</span>
+                        </div>
+                    </div>
+                </div>
+            {{/foreach}}
+        </div>
+        
+        {{!-- 右侧图片 --}}
+        <div class="gh-featured-slider-images">
+            {{#foreach posts limit="5"}}
+                <div class="gh-featured-slide-image" data-index="{{@index}}">
+                    {{#if feature_image}}
+                        <a href="{{url}}">
+                            <img src="{{img_url feature_image size="l"}}" alt="{{title}}" loading="lazy">
+                        </a>
+                    {{/if}}
+                </div>
+            {{/foreach}}
+        </div>
+        
+        {{!-- 导航按钮 --}}
+        <div class="gh-featured-slider-nav">
+            <button class="gh-slider-prev" aria-label="{{t "Previous"}}">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button class="gh-slider-next" aria-label="{{t "Next"}}">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </div>
+        
+        {{!-- 指示器 --}}
+        <div class="gh-featured-slider-dots">
+            {{#foreach posts limit="5"}}
+                <button class="gh-slider-dot" data-index="{{@index}}" aria-label="{{t "Go to slide"}} {{add @index 1}}"></button>
+            {{/foreach}}
+        </div>
+    </div>
+</section>
