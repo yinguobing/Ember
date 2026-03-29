@@ -65,7 +65,7 @@
                             <p class="gh-featured-slide-excerpt">{{excerpt words="30"}}</p>
                             {{/if}}
                             <div class="gh-featured-slide-meta">
-                                <time datetime="{{date format=" YYYY-MM-DD"}}">{{date format="YYYY MM DD"}}</time>
+                                <time datetime="{{date format=" YYYY-MM-DD"}}">{{date format="YYYY年M月D日"}}</time>
                                 <span class="gh-meta-sep">&middot;</span>
                                 <span>{{reading_time}}</span>
                             </div>
@@ -73,27 +73,27 @@
                     </div>
                     {{/foreach}}
 
-                    {{!-- 指示器 --}}
-                    <div class="gh-featured-slider-dots">
-                        {{#foreach posts}}
-                        <button class="gh-slider-dot" data-index="{{@index}}"></button>
-                        {{/foreach}}
-                    </div>
-
-                    {{!-- 导航按钮 --}}
-                    <div class="gh-featured-slider-nav">
-                        <button class="gh-slider-prev" aria-label="Previous">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                        </button>
-                        <button class="gh-slider-next" aria-label="Next">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
-                        </button>
+                    {{!-- 控制按钮区域 --}}
+                    <div class="gh-featured-slider-controls">
+                        <div class="gh-featured-slider-dots">
+                            {{#foreach posts}}
+                            <button class="gh-slider-dot" data-index="{{@index}}"></button>
+                            {{/foreach}}
+                        </div>
+                        <div class="gh-featured-slider-nav">
+                            <button class="gh-slider-prev" aria-label="Previous">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                </svg>
+                            </button>
+                            <button class="gh-slider-next" aria-label="Next">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

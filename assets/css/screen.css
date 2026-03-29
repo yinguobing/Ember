@@ -1165,6 +1165,14 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     padding: 40px;
 }
 
+.gh-featured-slider-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 32px;
+}
+
 .gh-featured-slider-inner .gh-featured-slide-title a {
     color: var(--color-white);
 }
@@ -1269,9 +1277,6 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 }
 
 .gh-featured-slider-nav {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
     display: flex;
     gap: 12px;
     z-index: 10;
@@ -1298,9 +1303,6 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 }
 
 .gh-featured-slider-dots {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
     display: flex;
     gap: 8px;
     z-index: 10;
