@@ -1145,7 +1145,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 
 .gh-featured-slider-inner {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
@@ -1226,12 +1226,6 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     margin: 0 8px;
 }
 
-.gh-featured-slider-images {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
 .gh-featured-slide-image {
     display: none;
     position: absolute;
@@ -1252,12 +1246,19 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     object-fit: cover;
 }
 
+.gh-featured-slider-images {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
 .gh-featured-slider-nav {
     position: absolute;
     bottom: 20px;
-    left: 20px;
+    right: 20px;
     display: flex;
     gap: 12px;
+    z-index: 10;
 }
 
 .gh-featured-slider-nav button {
@@ -1283,10 +1284,10 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 .gh-featured-slider-dots {
     position: absolute;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 20px;
     display: flex;
     gap: 8px;
+    z-index: 10;
 }
 
 .gh-slider-dot {
