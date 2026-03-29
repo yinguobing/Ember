@@ -1167,10 +1167,31 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 
 .gh-featured-slider-controls {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 16px;
     margin-top: auto;
     padding-top: 32px;
+}
+
+.gh-featured-slider-controls .gh-slider-prev,
+.gh-featured-slider-controls .gh-slider-next {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--color-white);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.gh-featured-slider-controls .gh-slider-prev:hover,
+.gh-featured-slider-controls .gh-slider-next:hover {
+    background: var(--ghost-accent-color);
 }
 
 .gh-featured-slider-inner .gh-featured-slide-title a {
@@ -1276,31 +1297,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     overflow: hidden;
 }
 
-.gh-featured-slider-nav {
-    display: flex;
-    gap: 12px;
-    z-index: 10;
-}
 
-.gh-featured-slider-nav button {
-    width: 44px;
-    height: 44px;
-    border: none;
-    border-radius: 50%;
-    background: var(--color-white);
-    color: var(--color-darker-gray);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
-}
-
-.gh-featured-slider-nav button:hover {
-    background: var(--ghost-accent-color);
-    color: var(--color-white);
-}
 
 .gh-featured-slider-dots {
     display: flex;

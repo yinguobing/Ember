@@ -75,25 +75,23 @@
 
                     {{!-- 控制按钮区域 --}}
                     <div class="gh-featured-slider-controls">
+                        <button class="gh-slider-prev" aria-label="Previous">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
                         <div class="gh-featured-slider-dots">
                             {{#foreach posts}}
                             <button class="gh-slider-dot" data-index="{{@index}}"></button>
                             {{/foreach}}
                         </div>
-                        <div class="gh-featured-slider-nav">
-                            <button class="gh-slider-prev" aria-label="Previous">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <polyline points="15 18 9 12 15 6"></polyline>
-                                </svg>
-                            </button>
-                            <button class="gh-slider-next" aria-label="Next">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <polyline points="9 18 15 12 9 6"></polyline>
-                                </svg>
-                            </button>
-                        </div>
+                        <button class="gh-slider-next" aria-label="Next">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>
