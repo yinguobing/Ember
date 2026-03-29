@@ -4,7 +4,7 @@
 
     <div class="gh-inner">
         {{!-- What's New Section - 三栏布局 --}}
-        <section class="gh-section gh-whats-new">
+        <section class="gh-whats-new">
             <h2 class="gh-section-title">近期发表</h2>
 
             <div class="gh-home-grid">
@@ -103,34 +103,27 @@
         {{> "popular-tags"}}
 
         {{!-- More Posts Grid --}}
-        <section class="gh-section gh-more-posts">
-            <h2 class="gh-section-title">More Articles</h2>
-            <div class="gh-posts-grid">
-                {{#foreach posts from="5" limit="6"}}
-                {{> "loop-grid"}}
+        {{#get "posts" limit="11" as |more_posts|}}
+        {{#if more_posts.[5]}}
+        <section class="gh-more-posts">
+            <h2 class="gh-section-title">更早的文章</h2>
+            <div class="gh-posts-grid gh-posts-grid-6">
+                {{#foreach more_posts from="6" limit="6"}}
+                {{> "loop-card-more"}}
                 {{/foreach}}
             </div>
 
-            <footer class="gh-topic-footer">
-                {{#match pagination.pages ">" 1}}
-                <a class="gh-topic-link" href="{{@site.url}}/page/2">Show more {{> "icons/arrow"}}</a>
-                {{/match}}
+            <footer class="gh-more-posts-footer">
+                <a class="gh-more-link" href="{{@site.url}}/page/2">
+                    更多内容
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </a>
             </footer>
         </section>
-
-        {{!-- Topics by Tag --}}
-        {{#if @custom.enter_tag_slugs_for_primary_sections}}
-        {{#get "tags" filter="slug:[{{@custom.enter_tag_slugs_for_primary_sections}}]" limit="2"}}
-        {{#foreach tags}}
-        {{> "topic-grid"}}
-        {{/foreach}}
-        {{/get}}
-        {{else}}
-        {{#get "tags" include="count.posts" order="count.posts desc" limit="2"}}
-        {{#foreach tags}}
-        {{> "topic-grid"}}
-        {{/foreach}}
-        {{/get}}
         {{/if}}
+        {{/get}}
+
     </div>
     </main>
