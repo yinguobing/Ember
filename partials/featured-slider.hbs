@@ -3,7 +3,7 @@
     <div class="gh-featured-slider-inner">
         {{!-- 左侧文字内容 --}}
         <div class="gh-featured-slider-content">
-            {{#foreach posts limit="5"}}
+            {{#foreach slider_posts}}
                 <div class="gh-featured-slide" data-index="{{@index}}">
                     <div class="gh-featured-slide-inner">
                         {{#primary_tag}}
@@ -25,7 +25,7 @@
         
         {{!-- 右侧图片 --}}
         <div class="gh-featured-slider-images">
-            {{#foreach posts limit="5"}}
+            {{#foreach slider_posts}}
                 <div class="gh-featured-slide-image" data-index="{{@index}}">
                     {{#if feature_image}}
                         <a href="{{url}}">
@@ -48,7 +48,7 @@
         
         {{!-- 指示器 --}}
         <div class="gh-featured-slider-dots">
-            {{#foreach posts limit="5"}}
+            {{#foreach slider_posts}}
                 <button class="gh-slider-dot" data-index="{{@index}}" aria-label="{{t "Go to slide"}} {{add @index 1}}"></button>
             {{/foreach}}
         </div>

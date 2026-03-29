@@ -4,10 +4,10 @@
     {{!-- Hero Section --}}
     {{> "hero-section"}}
     
-    {{!-- Featured Slider - 显示最新5篇文章 --}}
-    {{#get "posts" include="tags,authors" limit="5"}}
+    {{!-- Featured Slider - 显示标记为精选的文章 --}}
+    {{#get "posts" include="tags,authors" filter="featured:true" limit="5"}}
         {{#if posts}}
-            {{> "featured-slider"}}
+            {{> "featured-slider" slider_posts=posts}}
         {{/if}}
     {{/get}}
     
