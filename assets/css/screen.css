@@ -1140,7 +1140,23 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 /* Featured Slider */
 .gh-featured-slider {
     padding: 40px 0 60px;
-    background: var(--color-white);
+    background: var(--ghost-accent-color);
+}
+
+.gh-featured-slider-content {
+    color: var(--color-white);
+}
+
+.gh-featured-slide-title a {
+    color: var(--color-white);
+}
+
+.gh-featured-slide-excerpt {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.gh-featured-slide-meta {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .gh-featured-slider-inner {
@@ -1248,7 +1264,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 
 .gh-featured-slider-images {
     position: relative;
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
 }
 
@@ -1380,7 +1396,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 .gh-card-large .gh-card-image-holder {
     position: relative;
     flex: 1;
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
     margin-bottom: 16px;
     min-height: 0;

@@ -35,8 +35,8 @@
         {{#get "posts" filter="featured:true" limit="5"}}
         {{#if posts}}
         <section class="gh-featured-slider">
+            <h2 class="gh-section-title">精选内容</h2>
             <div class="gh-featured-slider-inner">
-
 
                 {{!-- 图片 --}}
                 <div class="gh-featured-slider-images">
@@ -44,7 +44,7 @@
                     <div class="gh-featured-slide-image" data-index="{{@index}}">
                         {{#if feature_image}}
                         <a href="{{url}}">
-                            <img src="{{img_url feature_image size="l"}}" alt="{{title}}" loading="lazy">
+                            <img src="{{img_url feature_image size=" l"}}" alt="{{title}}" loading="lazy">
                         </a>
                         {{/if}}
                     </div>
