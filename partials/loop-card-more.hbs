@@ -11,6 +11,9 @@
                 alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
                 loading="lazy"
             >
+            {{#primary_tag}}
+            <span class="gh-card-tag" style="{{#if accent_color}}background-color: {{accent_color}}{{/if}}">{{name}}</span>
+            {{/primary_tag}}
         </figure>
         {{/if}}
 

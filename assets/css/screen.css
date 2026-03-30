@@ -1894,6 +1894,21 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     color: var(--ghost-accent-color);
 }
 
+/* Tag on gh-card-more-image */
+.gh-card-more .gh-card-tag {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-white);
+    background: var(--ghost-accent-color);
+    border-radius: 20px;
+    text-decoration: none;
+    z-index: 2;
+}
+
 .gh-card-more-excerpt {
     font-size: 1.4rem;
     line-height: 1.5;
