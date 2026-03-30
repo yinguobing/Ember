@@ -13,6 +13,9 @@
                      alt="{{title}}" 
                      loading="lazy">
             </div>
+            {{#match visibility "paid"}}
+            <span class="gh-card-premium-badge" title="付费文章">🌟</span>
+            {{/match}}
         {{/if}}
     </div>
     

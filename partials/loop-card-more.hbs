@@ -11,6 +11,9 @@
                 alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
                 loading="lazy"
             >
+            {{#match visibility "paid"}}
+            <span class="gh-card-premium-badge" title="付费文章">🌟</span>
+            {{/match}}
         </figure>
         {{/if}}
 
