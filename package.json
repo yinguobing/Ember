@@ -83,6 +83,11 @@
             "tag_slugs_for_popular_tags": {
                 "type": "text",
                 "group": "homepage"
+            },
+            "hero_scramble_phrases": {
+                "type": "text",
+                "default": "探索未知,发现美好,创造价值,分享见解",
+                "group": "homepage"
             }
         }
     },
