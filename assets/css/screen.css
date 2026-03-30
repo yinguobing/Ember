@@ -2114,3 +2114,30 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 .home-template {
     background-color: #e8e8edb3;
 }
+/* Post Grid (4-column layout for index page)
+/* ---------------------------------------------------------- */
+.gh-post-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 1200px) {
+    .gh-post-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .gh-post-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gh-post-grid {
+        grid-template-columns: 1fr;
+    }
+}
