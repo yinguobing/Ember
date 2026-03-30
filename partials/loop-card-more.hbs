@@ -11,13 +11,13 @@
                 alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
                 loading="lazy"
             >
-            {{#primary_tag}}
-            <span class="gh-card-tag" style="{{#if accent_color}}background-color: {{accent_color}}{{/if}}">{{name}}</span>
-            {{/primary_tag}}
         </figure>
         {{/if}}
 
         <div class="gh-card-more-content">
+            {{#primary_tag}}
+            <span class="gh-card-tag" style="{{#if accent_color}}background-color: {{accent_color}}{{/if}}">{{name}}</span>
+            {{/primary_tag}}
             <h3 class="gh-card-more-title">{{title}}</h3>
             
             {{#if excerpt}}

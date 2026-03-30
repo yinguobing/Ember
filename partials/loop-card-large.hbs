@@ -14,12 +14,12 @@
                      loading="lazy">
             </div>
         {{/if}}
-        {{#primary_tag}}
-            <a href="{{url}}" class="gh-card-tag" style="{{#if accent_color}}background-color: {{accent_color}}{{/if}}">{{name}}</a>
-        {{/primary_tag}}
     </div>
     
     <div class="gh-card-content">
+        {{#primary_tag}}
+            <a href="{{url}}" class="gh-card-tag" style="{{#if accent_color}}background-color: {{accent_color}}{{/if}}">{{name}}</a>
+        {{/primary_tag}}
         <h3 class="gh-card-title"><a href="{{url}}">{{title}}</a></h3>
         {{#if excerpt}}
             <p class="gh-card-excerpt">{{excerpt words="25"}}</p>

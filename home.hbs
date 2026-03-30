@@ -4,32 +4,34 @@
 
     <div class="gh-inner">
         {{!-- What's New Section - 三栏布局 --}}
+        {{#get "posts" limit="5" include="tags" as |whats_new_posts|}}
         <section class="gh-whats-new">
             <h2 class="gh-section-title">近期发表</h2>
 
             <div class="gh-home-grid">
                 {{!-- 第一栏：大文章 --}}
                 <div class="gh-home-grid-col gh-home-grid-col-1">
-                    {{#foreach posts limit="1"}}
+                    {{#foreach whats_new_posts limit="1"}}
                     {{> "loop-card-large"}}
                     {{/foreach}}
                 </div>
 
                 {{!-- 第二栏：2篇小文章 --}}
                 <div class="gh-home-grid-col gh-home-grid-col-2">
-                    {{#foreach posts from="2" limit="2"}}
+                    {{#foreach whats_new_posts from="2" limit="2"}}
                     {{> "loop-card-small"}}
                     {{/foreach}}
                 </div>
 
                 {{!-- 第三栏：2篇小文章 --}}
                 <div class="gh-home-grid-col gh-home-grid-col-3">
-                    {{#foreach posts from="4" limit="2"}}
+                    {{#foreach whats_new_posts from="4" limit="2"}}
                     {{> "loop-card-small"}}
                     {{/foreach}}
                 </div>
             </div>
         </section>
+        {{/get}}
 
         {{!-- Featured Slider --}}
         {{#get "posts" filter="featured:true" limit="5"}}

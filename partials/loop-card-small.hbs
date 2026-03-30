@@ -13,12 +13,12 @@
                      loading="lazy">
             </div>
         {{/if}}
-        {{#primary_tag}}
-            <a href="{{url}}" class="gh-card-tag" style="{{#if accent_color}}background-color: {{accent_color}}{{/if}}">{{name}}</a>
-        {{/primary_tag}}
     </div>
     
     <div class="gh-card-content">
+        {{#primary_tag}}
+            <a href="{{url}}" class="gh-card-tag" style="{{#if accent_color}}background-color: {{accent_color}}{{/if}}">{{name}}</a>
+        {{/primary_tag}}
         <h4 class="gh-card-title"><a href="{{url}}">{{title}}</a></h4>
         <div class="gh-card-meta">
             <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
