@@ -690,6 +690,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     flex-direction: column;
     align-items: center;
     font-size: 1.4rem;
+    gap: 0;
 }
 
 .gh-foot-menu {

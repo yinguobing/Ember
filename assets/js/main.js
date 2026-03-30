@@ -118,7 +118,7 @@
         constructor(el, config) {
             this.el = el;
             this.config = config;
-            this.chars = '!<>-_\\/[]{}—=+*^?#________';
+            this.chars = '甲乙丙丁戊己庚辛壬癸子丑寅卯辰巳午未申酉戌亥';
             this.update = this.update.bind(this);
         }
         
