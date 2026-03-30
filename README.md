@@ -1,42 +1,61 @@
-# Headline
+# Ember
 
-Headline is a [Ghost](https://github.com/TryGhost/Ghost) theme built from the ground up for local news. While it can be used for any purpose, the theme takes a thoughtful approach to displaying large amounts of content across various areas of coverage. Headline adapts to your content by showcasing your most written about topics or by giving you the control to decide which topics are front and center.
+Ember is a clean, modern [Ghost](https://ghost.org/) theme designed for content-focused publications. Built on top of the excellent [Headline](https://github.com/TryGhost/Headline) theme by Ghost Foundation.
 
-**Demo: https://headline.ghost.io**
+**Demo:** https://headline.ghost.io
 
-# Instructions
+## Credits
 
-1. [Download this theme](https://github.com/TryGhost/Headline/archive/main.zip)
-2. Log into Ghost, and go to the `Design` settings area to upload the zip file
+This theme is based on [Headline](https://github.com/TryGhost/Headline) by Ghost Foundation. We've preserved the solid foundation of Headline while refining the visual design and user experience.
 
-# Development
+## Features
 
-Edition styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:
+- **Clean Card Layout** — All posts display in elegant white cards with consistent 16px padding
+- **Tag Display** — Primary tags shown as accent-colored text (no background badges)
+- **Featured Content Slider** — Highlight important posts with a sleek 1:1 image-content slider
+- **Responsive Grid** — "What's New" section with large + small card grid layout
+- **Optimized Typography** — Carefully tuned font sizes and spacing for readability
+- **Dark Mode Ready** — CSS variables for easy theme customization
+
+## Installation
+
+1. Download the latest release or clone this repository
+2. Run `yarn zip` to create the distribution file
+3. Upload `dist/ember.zip` to your Ghost Admin → Design → Change theme
+
+## Development
+
+This theme uses Gulp/PostCSS for building. You'll need [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/) installed.
 
 ```bash
-# Install
+# Install dependencies
 yarn
 
-# Run build & watch for changes
+# Build and watch for changes
 yarn dev
-```
 
-Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
-
-The `zip` Gulp task packages the theme files into `dist/headline.zip`, which you can then upload to your site.
-
-```bash
+# Create distribution zip
 yarn zip
 ```
 
-# Contribution
+Edit files in `/assets/css/` — they will be compiled to `/assets/built/` automatically.
 
-This repo is synced automatically with [TryGhost/Themes](https://github.com/TryGhost/Themes) monorepo. If you're looking to contribute or raise an issue, head over to the main repository [TryGhost/Themes](https://github.com/TryGhost/Themes) where our official themes are developed.
+## Customization
 
-### Theme translations
+The following custom settings are available in Ghost Admin:
 
-Please see the @Tryghost/Themes/theme-translations/README.md for how to edit or contribute translations.
+- **Navigation Layout** — Logo position (left, middle, or stacked)
+- **Header Style** — Light, accent color, or dark
+- **Title Font** — Modern sans-serif or elegant serif
+- **Body Font** — Modern sans-serif or elegant serif
+- **Footer Text** — Custom copyright text
+- **Popular Tags** — Select which tags to feature
+- **Hero Scramble** — Animated text phrases for homepage hero
 
-# Copyright & License
+## Original Theme
+
+Ember is built upon [Headline](https://github.com/TryGhost/Headline), a theme designed for local news and publications by the Ghost Foundation.
+
+## License
 
 Copyright (c) 2013-2026 Ghost Foundation - Released under the [MIT license](LICENSE).

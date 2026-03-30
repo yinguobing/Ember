@@ -1,6 +1,6 @@
 {
-    "name": "headline",
-    "description": "A Ghost theme",
+    "name": "ember",
+    "description": "Ember - A clean and modern Ghost theme",
     "version": "1.0.0",
     "private": true,
     "engines": {
@@ -65,20 +65,8 @@
             "white_publication_logo_for_transparent_header": {
                 "type": "image"
             },
-            "email_signup_text": {
-                "type": "text",
-                "default": "Don't miss out on the latest news. Sign up now to get access to the library of members-only articles."
-            },
             "footer_text": {
                 "type": "text"
-            },
-            "enter_tag_slugs_for_primary_sections": {
-                "type": "text",
-                "group": "homepage"
-            },
-            "enter_tag_slugs_for_secondary_sections": {
-                "type": "text",
-                "group": "homepage"
             },
             "tag_slugs_for_popular_tags": {
                 "type": "text",
