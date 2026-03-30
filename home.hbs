@@ -103,12 +103,12 @@
         {{> "popular-tags"}}
 
         {{!-- More Posts Grid --}}
-        {{#get "posts" limit="11" as |more_posts|}}
-        {{#if more_posts.[5]}}
+        {{#get "posts" limit="13" as |more_posts|}}
+        {{#if more_posts.[7]}}
         <section class="gh-more-posts">
             <h2 class="gh-section-title">更早的文章</h2>
             <div class="gh-posts-grid gh-posts-grid-6">
-                {{#foreach more_posts from="6" limit="6"}}
+                {{#foreach more_posts from="6" limit="8"}}
                 {{> "loop-card-more"}}
                 {{/foreach}}
             </div>

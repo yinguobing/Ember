@@ -1095,10 +1095,186 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     margin-bottom: 24px;
 }
 
+.gh-hero-title .typewriter-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--ghost-accent-color);
+    animation: typing 2.5s steps(30, end) forwards,
+        blink-caret 0.75s step-end infinite;
+    max-width: 100%;
+}
+
+.gh-hero-title .typewriter-cursor {
+    display: inline-block;
+    color: var(--ghost-accent-color);
+    animation: blink-cursor 0.75s step-end infinite;
+    margin-left: 2px;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: var(--ghost-accent-color);
+    }
+}
+
+@keyframes blink-cursor {
+
+    from,
+    to {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .gh-hero-title .typewriter-text {
+        white-space: normal;
+        border-right: none;
+        animation: fade-in 1s ease-in forwards;
+    }
+
+    .gh-hero-title .typewriter-cursor {
+        display: none;
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
 .gh-hero-subtitle {
     font-size: 1.8rem;
     color: var(--color-secondary-text);
     margin-bottom: 24px;
+}
+
+/* Flip Text Animation for Hero Title */
+.gh-hero-title-flip {
+    font-size: 6rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-darker-gray);
+    margin-bottom: 24px;
+}
+
+.gh-hero-flip-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.3em;
+}
+
+.gh-hero-flip-static {
+    color: var(--color-darker-gray);
+}
+
+.gh-hero-flip {
+    height: 1.3em;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.gh-hero-flip>div>div {
+    color: #fff;
+    padding: 0.05em 0.2em;
+    height: 1.2em;
+    margin-bottom: 1.2em;
+    display: inline-block;
+}
+
+.gh-hero-flip div:first-child {
+    animation: gh-flip-show 5s linear infinite;
+}
+
+.gh-hero-flip div div {
+    background: #42c58a;
+}
+
+.gh-hero-flip div:first-child div {
+    background: #4ec7f3;
+}
+
+.gh-hero-flip div:last-child div {
+    background: #DC143C;
+}
+
+@keyframes gh-flip-show {
+    0% {
+        margin-top: -3.6em;
+    }
+
+    5% {
+        margin-top: -2.4em;
+    }
+
+    33% {
+        margin-top: -2.4em;
+    }
+
+    38% {
+        margin-top: -1.2em;
+    }
+
+    66% {
+        margin-top: -1.2em;
+    }
+
+    71% {
+        margin-top: 0px;
+    }
+
+    99.99% {
+        margin-top: 0px;
+    }
+
+    100% {
+        margin-top: -3.6em;
+    }
+}
+
+@media (max-width: 767px) {
+    .gh-hero-title-flip {
+        font-size: 6rem;
+    }
+
+    .gh-hero-flip-container {
+        flex-direction: column;
+        gap: 0.2em;
+    }
+
+    .gh-hero-flip {
+        height: 1.3em;
+    }
 }
 
 .gh-hero-form {
@@ -1624,7 +1800,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 /* More Posts - 6 Cards Grid (3x2) */
 .gh-posts-grid-6 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, auto);
     gap: 32px;
 }
