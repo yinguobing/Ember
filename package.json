@@ -88,6 +88,12 @@
                 "type": "text",
                 "default": "探索未知,发现美好,创造价值,分享见解",
                 "group": "homepage"
+            },
+            "hero_scramble_speed": {
+                "type": "select",
+                "options": ["Fast", "Normal", "Slow"],
+                "default": "Normal",
+                "group": "homepage"
             }
         }
     },

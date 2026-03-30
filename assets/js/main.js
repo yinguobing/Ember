@@ -102,10 +102,22 @@
     const el = document.querySelector('.gh-scramble-text');
     if (!el) return;
 
+    // Speed configurations
+    const speedConfig = {
+        'Fast': { frameRange: 20, durationRange: 20, pause: 1500 },
+        'Normal': { frameRange: 40, durationRange: 40, pause: 2500 },
+        'Slow': { frameRange: 60, durationRange: 60, pause: 4000 }
+    };
+
+    // Get speed setting from data attribute
+    const speedAttr = el.getAttribute('data-speed') || 'Normal';
+    const config = speedConfig[speedAttr] || speedConfig['Normal'];
+
     // TextScramble Class
     class TextScramble {
-        constructor(el) {
+        constructor(el, config) {
             this.el = el;
+            this.config = config;
             this.chars = '!<>-_\\/[]{}—=+*^?#________';
             this.update = this.update.bind(this);
         }
@@ -118,8 +130,8 @@
             for (let i = 0; i < length; i++) {
                 const from = oldText[i] || '';
                 const to = newText[i] || '';
-                const start = Math.floor(Math.random() * 40);
-                const end = start + Math.floor(Math.random() * 40);
+                const start = Math.floor(Math.random() * this.config.frameRange);
+                const end = start + Math.floor(Math.random() * this.config.durationRange);
                 this.queue.push({ from, to, start, end });
             }
             cancelAnimationFrame(this.frameRequest);
@@ -172,12 +184,12 @@
         'and walking the path'
     ];
 
-    const fx = new TextScramble(el);
+    const fx = new TextScramble(el, config);
     let counter = 0;
     
     const next = () => {
         fx.setText(phrases[counter]).then(() => {
-            setTimeout(next, 2500);
+            setTimeout(next, config.pause);
         });
         counter = (counter + 1) % phrases.length;
     };
