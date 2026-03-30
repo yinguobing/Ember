@@ -103,7 +103,7 @@
         {{> "popular-tags"}}
 
         {{!-- More Posts Grid --}}
-        {{#get "posts" limit="13" as |more_posts|}}
+        {{#get "posts" limit="13" include="tags" as |more_posts|}}
         {{#if more_posts.[7]}}
         <section class="gh-more-posts">
             <h2 class="gh-section-title">更早的文章</h2>
