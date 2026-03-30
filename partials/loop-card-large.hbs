@@ -25,9 +25,9 @@
             <p class="gh-card-excerpt">{{excerpt words="25"}}</p>
         {{/if}}
         <div class="gh-card-meta">
-            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+            {{#foreach authors}}{{#if @first}}{{name}}{{/if}}{{/foreach}}
             <span class="gh-meta-sep">&middot;</span>
-            <span>{{reading_time}}</span>
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="YYYY年M月D日"}}</time>
         </div>
     </div>
 </article>

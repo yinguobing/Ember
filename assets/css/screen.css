@@ -1451,10 +1451,12 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 .gh-featured-slide-meta {
     font-size: 1.3rem;
     color: var(--color-secondary-text);
+    display: flex;
+    align-items: center;
 }
 
 .gh-meta-sep {
-    margin: 0 8px;
+    margin: 0;
 }
 
 .gh-featured-slide-image {
@@ -1642,6 +1644,9 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 .gh-card-large .gh-card-meta {
     font-size: 1.3rem;
     color: var(--color-secondary-text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 /* Small Card - Styled like gh-card-more */
@@ -2111,7 +2116,8 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 }
 
 /* Home template background color */
-.home-template {
+.home-template,
+.paged {
     background-color: #e8e8edb3;
 }
 /* Post Grid (4-column layout for index page)

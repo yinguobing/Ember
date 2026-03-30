@@ -4,7 +4,7 @@
 
     <div class="gh-inner">
         {{!-- What's New Section - 三栏布局 --}}
-        {{#get "posts" limit="5" include="tags" as |whats_new_posts|}}
+        {{#get "posts" limit="5" include="authors,tags" as |whats_new_posts|}}
         <section class="gh-whats-new">
             <h2 class="gh-section-title">近期发表</h2>
 
@@ -34,7 +34,7 @@
         {{/get}}
 
         {{!-- Featured Slider --}}
-        {{#get "posts" filter="featured:true" limit="5"}}
+        {{#get "posts" filter="featured:true" limit="5" include="authors"}}
         {{#if posts}}
         <section class="gh-featured-slider">
             <h2 class="gh-section-title">精选内容</h2>
@@ -66,9 +66,9 @@
                             <p class="gh-featured-slide-excerpt">{{excerpt words="30"}}</p>
                             {{/if}}
                             <div class="gh-featured-slide-meta">
-                                <time datetime="{{date format=" YYYY-MM-DD"}}">{{date format="YYYY年M月D日"}}</time>
+                                {{#foreach authors}}{{#if @first}}{{name}}{{/if}}{{/foreach}}
                                 <span class="gh-meta-sep">&middot;</span>
-                                <span>{{reading_time}}</span>
+                                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="YYYY年M月D日"}}</time>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
         {{> "popular-tags"}}
 
         {{!-- More Posts Grid --}}
-        {{#get "posts" limit="13" include="tags" as |more_posts|}}
+        {{#get "posts" limit="13" include="authors,tags" as |more_posts|}}
         {{#if more_posts.[7]}}
         <section class="gh-more-posts">
             <h2 class="gh-section-title">更早的文章</h2>
