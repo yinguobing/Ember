@@ -1,29 +1,32 @@
-{{!-- Small Post Card - 参考 Imperia 设计 --}}
-<article class="gh-card gh-card-small {{post_class}}">
-    <a href="{{url}}" class="gh-card-link"></a>
-    
-    <div class="gh-card-image-holder">
+{{!-- Small Post Card - Styled like gh-card-more --}}
+<article class="gh-card-small {{post_class}}">
+    <a class="gh-card-small-link" href="{{url}}">
         {{#if feature_image}}
-            <div class="gh-card-image">
-                <img src="{{img_url feature_image size="m"}}" 
-                     srcset="{{img_url feature_image size="s"}} 300w,
-                             {{img_url feature_image size="m"}} 600w"
-                     sizes="(max-width: 768px) 100vw, 300px"
-                     alt="{{title}}" 
-                     loading="lazy">
-            </div>
+        <figure class="gh-card-small-image">
+            <img
+                srcset="{{img_url feature_image size="s"}} 300w,
+                        {{img_url feature_image size="m"}} 720w"
+                sizes="(max-width: 768px) 100vw, 400px"
+                src="{{img_url feature_image size="m"}}"
+                alt="{{title}}"
+                loading="lazy"
+            >
+        </figure>
         {{/if}}
-    </div>
-    
-    <div class="gh-card-content">
-        {{#primary_tag}}
-            <a href="{{url}}" class="gh-card-tag" style="{{#if accent_color}}background-color: {{accent_color}}{{/if}}">{{name}}</a>
-        {{/primary_tag}}
-        <h4 class="gh-card-title"><a href="{{url}}">{{title}}</a></h4>
-        <div class="gh-card-meta">
-            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
-            <span class="gh-meta-sep">&middot;</span>
-            <span>{{reading_time}}</span>
+
+        <div class="gh-card-small-content">
+            {{#primary_tag}}
+            <span class="gh-card-tag">{{name}}</span>
+            {{/primary_tag}}
+            <h3 class="gh-card-small-title">{{title}}</h3>
+            {{#if excerpt}}
+            <p class="gh-card-small-excerpt">{{excerpt words="20"}}</p>
+            {{/if}}
+            <div class="gh-card-small-meta">
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="YYYY年M月D日"}}</time>
+                <span class="gh-meta-sep">&middot;</span>
+                <span>{{reading_time}}</span>
+            </div>
         </div>
-    </div>
+    </a>
 </article>
