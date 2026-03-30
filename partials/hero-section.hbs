@@ -1,16 +1,9 @@
-{{!-- Hero Section - 翻转文字动画 --}}
+{{!-- Hero Section - Text Scramble 动画 --}}
 <section class="gh-hero-section">
     <div class="gh-hero-inner">
-        <h1 class="gh-hero-title gh-hero-title-flip">
-            <div class="gh-hero-flip-container">
-                <span class="gh-hero-flip-static">Make</span>
-                <div class="gh-hero-flip">
-                    <div><div>wOrK</div></div>
-                    <div><div>fdasb</div></div>
-                    <div><div>Everything</div></div>
-                </div>
-                <span class="gh-hero-flip-static">AweSoMe!</span>
-            </div>
+        <h1 class="gh-hero-title gh-hero-title-scramble">
+            <span class="gh-scramble-text" data-phrases="{{@site.title}},探索未知,发现美好,创造价值"></span>
         </h1>
+        <p class="gh-hero-subtitle">{{@site.description}}</p>
     </div>
 </section>
