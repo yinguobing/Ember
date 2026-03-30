@@ -1336,7 +1336,6 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 .gh-featured-slider-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0;
@@ -1480,7 +1479,6 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 
 .gh-featured-slider-images {
     position: relative;
-    border-radius: 8px;
     overflow: hidden;
 }
 
