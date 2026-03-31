@@ -4,7 +4,13 @@
     <div class="gh-inner">
 
         <section class="gh-pagehead">
-            <h1 class="gh-pagehead-title">{{t "Latest"}}</h1>
+            <h1 class="gh-pagehead-title">
+                {{#is "paged"}}
+                    更早的文章
+                {{else}}
+                    {{t "Latest"}}
+                {{/is}}
+            </h1>
         </section>
 
         <div class="gh-feed gh-post-grid">

@@ -1947,6 +1947,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     margin-top: 48px;
     padding-top: 32px;
     border-top: 1px solid var(--color-light-gray);
@@ -2001,12 +2002,15 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 .gh-more-link {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
+    min-width: 140px;
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--color-darker-gray);
     text-decoration: none;
     transition: all 0.2s ease;
+    transform: translateX(12px);
 }
 
 .gh-more-link svg {
