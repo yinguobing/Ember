@@ -30,10 +30,15 @@ figcaption {
     font-weight: 500;
 }
 
-body:not(.is-head-stacked) .gh-head {
+body:not(.is-head-stacked):not(.is-head-transparent) .gh-head {
     height: 88px;
     position: relative;
     z-index: 10;
+}
+
+body:not(.is-head-stacked).is-head-transparent .gh-head {
+    height: 88px;
+    z-index: 90;
 }
 
 body:not(.is-head-stacked) .gh-head-inner {
@@ -2128,6 +2133,11 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     background-color: #e8e8edb3;
 }
 
+.home-template .gh-head {
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
 /* Prevent horizontal scroll from hero blobs */
 html {
     overflow-x: hidden;
@@ -2147,6 +2157,7 @@ html {
     height: calc(100% + 440px);
     z-index: 0;
     overflow: hidden;
+    pointer-events: none;
     /* Fade out gradient from top to bottom - extends 300px into content */
     -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.6) 75%, rgba(0, 0, 0, 0) 100%);
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.6) 75%, rgba(0, 0, 0, 0) 100%);
