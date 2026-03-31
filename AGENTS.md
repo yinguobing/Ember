@@ -1,11 +1,10 @@
-# Headline - Ghost Theme
+# Ember - Ghost Theme
 
 ## Project Overview
 
-Headline is a Ghost theme built specifically for local news and publications. It organizes content by topics/sections and provides a news-style layout with grid and list views. The theme is part of the official Ghost Themes collection.
+Ember is a clean and modern Ghost theme with a focus on readability and elegant design. It features a custom homepage layout with hero section, featured content slider, and organized post grids. Originally based on the Headline theme, it has been extensively customized for personal blog use.
 
-- **Demo**: https://headline.ghost.io
-- **Documentation**: https://headline.ghost.io/about/
+- **Demo**: https://yinguobing.com
 - **License**: MIT
 - **Ghost Version**: >= 5.0.0
 
@@ -25,10 +24,11 @@ Headline is a Ghost theme built specifically for local news and publications. It
 ├── *.hbs                    # Root templates (default, home, post, page, etc.)
 ├── partials/                # Reusable template components
 │   ├── icons/              # SVG icon partials
-│   ├── loop-grid.hbs       # Grid layout post card
-│   ├── loop-minimal.hbs    # Minimal list post card
-│   ├── topic-grid.hbs      # Topic section (grid style)
-│   ├── topic-minimal.hbs   # Topic section (list style)
+│   ├── hero-section.hbs    # Hero section with animated background
+│   ├── popular-tags.hbs    # Popular tags cloud display
+│   ├── loop-card-large.hbs # Large featured post card
+│   ├── loop-card-small.hbs # Small post card
+│   ├── loop-card-more.hbs  # Post card for "more posts" grid
 │   ├── post-meta.hbs       # Post metadata (authors, date, reading time)
 │   ├── feature-image.hbs   # Featured image component
 │   ├── related-posts.hbs   # Related posts section
@@ -39,12 +39,13 @@ Headline is a Ghost theme built specifically for local news and publications. It
 │   │   ├── screen.css      # Main theme styles
 │   │   └── fonts.css       # Font-face declarations (Inter, Lora)
 │   ├── js/
-│   │   └── main.js         # Theme JavaScript (pagination, cover image)
+│   │   └── main.js         # Theme JavaScript (slider, pagination, animations)
 │   ├── fonts/              # Webfont files (woff, woff2)
 │   ├── images/             # Theme images
 │   └── built/              # Compiled assets (generated)
 ├── locales/                # Translation files (i18n)
 │   ├── en.json            # English (base)
+│   ├── zh.json            # Chinese (Simplified)
 │   ├── context.json       # Translation context documentation
 │   └── [lang].json        # Other language files
 ├── package.json           # Theme configuration & dependencies
@@ -55,8 +56,8 @@ Headline is a Ghost theme built specifically for local news and publications. It
 ## Template Hierarchy
 
 - **`default.hbs`**: Base layout with header/footer
-- **`home.hbs`**: Homepage with featured posts + topic sections
-- **`index.hbs`**: Post list (pagination pages)
+- **`home.hbs`**: Homepage with hero section, featured slider, and post grids
+- **`index.hbs`**: Post list for pagination pages
 - **`post.hbs`**: Single post view
 - **`page.hbs`**: Static page view
 - **`tag.hbs`**: Tag archive with cover image
@@ -115,17 +116,19 @@ Defined in `package.json` under `config.custom`:
 | `title_font` | select | Modern sans-serif, Elegant serif | Modern sans-serif |
 | `body_font` | select | Modern sans-serif, Elegant serif | Elegant serif |
 | `white_publication_logo_for_transparent_header` | image | - | - |
-| `email_signup_text` | text | - | (default message) |
 | `footer_text` | text | - | - |
-| `enter_tag_slugs_for_primary_sections` | text | - | - |
-| `enter_tag_slugs_for_secondary_sections` | text | - | - |
+| `tag_slugs_for_popular_tags` | text | - | - |
+| `hero_scramble_phrases` | text | - | "探索未知,发现美好,创造价值,分享见解" |
+| `hero_scramble_speed` | select | Fast, Normal, Slow | Normal |
 
 ## Key Features
 
-### Content Organization
-- **Topic Grid**: Large cards with images, used for primary topics
-- **Topic Minimal**: Text-only list, used for secondary topics
-- **Dynamic Topics**: Automatically shows most-written-about tags, or manual selection via custom settings
+### Homepage Layout
+- **Hero Section**: Animated gradient background with text scramble animation
+- **What's New**: Three-column grid showing recent posts (1 large + 4 small)
+- **Featured Slider**: Dark-themed carousel for featured posts
+- **Popular Tags**: Visual tag cloud with background images
+- **More Posts**: 8-card grid with "更多内容" pagination link
 
 ### Post Cards
 - Grid layout with responsive images (srcset)
@@ -136,7 +139,7 @@ Defined in `package.json` under `config.custom`:
 ### Header Variants
 - Left logo / Middle logo / Stacked navigation
 - Light, Accent, or Dark header styles
-- Transparent header on tag pages with feature images
+- Transparent header with blur effect on homepage
 
 ### Fonts
 - **Inter** (sans-serif): Modern, clean headings and UI
@@ -163,7 +166,7 @@ Gscan checks for:
 
 ## Deployment
 
-1. Run `yarn zip` to create `dist/headline.zip`
+1. Run `yarn zip` to create `dist/ember.zip`
 2. Upload via Ghost Admin → Design → Change theme → Upload
 
 Or deploy to Ghost(Pro) via GitHub integration.
@@ -185,13 +188,6 @@ Or deploy to Ghost(Pro) via GitHub integration.
 - Minimal, vanilla JS only
 - Theme-specific behaviors in IIFEs
 - Leverages shared theme assets for common functionality (pagination)
-
-## Important Notes
-
-- This repo is auto-synced from [TryGhost/Themes](https://github.com/TryGhost/Themes) monorepo
-- For contributions, use the main Themes repository
-- Translation contributions go to `@tryghost/theme-translations`
-- Card assets (`card_assets: true`) enable Ghost's built-in bookmark cards
 
 ## Security Considerations
 
