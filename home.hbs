@@ -1,7 +1,9 @@
-{{!< default}} <main class="gh-main gh-outer">
-    {{!-- Hero Section --}}
-    {{> "hero-section"}}
+{{!< default}}
 
+{{!-- Hero Section - 全宽，在 gh-outer 外部 --}}
+{{> "hero-section"}}
+
+<main class="gh-main gh-outer">
     <div class="gh-inner">
         {{!-- What's New Section - 三栏布局 --}}
         {{#get "posts" limit="5" include="authors,tags" as |whats_new_posts|}}
