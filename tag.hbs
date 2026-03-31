@@ -40,12 +40,10 @@
             {{/unless}}
         {{/tag}}
 
-        <div class="gh-topic gh-topic-grid">
-            <div class="gh-topic-content gh-feed">
-                {{#foreach posts}}
-                    {{> "loop-grid"}}
-                {{/foreach}}
-            </div>
+        <div class="gh-feed gh-post-grid">
+            {{#foreach posts}}
+                {{> "loop-card-small"}}
+            {{/foreach}}
         </div>
     </div>
 </main>

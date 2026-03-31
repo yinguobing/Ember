@@ -13,21 +13,24 @@
                      alt="{{title}}" 
                      loading="lazy">
             </div>
+            {{#match visibility "paid"}}
+            <span class="gh-card-premium-badge" title="付费文章">🌟</span>
+            {{/match}}
         {{/if}}
-        {{#primary_tag}}
-            <a href="{{url}}" class="gh-card-tag" style="{{#if accent_color}}background-color: {{accent_color}}{{/if}}">{{name}}</a>
-        {{/primary_tag}}
     </div>
     
     <div class="gh-card-content">
+        {{#primary_tag}}
+            <a href="{{url}}" class="gh-card-tag">{{name}}</a>
+        {{/primary_tag}}
         <h3 class="gh-card-title"><a href="{{url}}">{{title}}</a></h3>
         {{#if excerpt}}
             <p class="gh-card-excerpt">{{excerpt words="25"}}</p>
         {{/if}}
         <div class="gh-card-meta">
-            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+            {{#foreach authors}}{{#if @first}}{{name}}{{/if}}{{/foreach}}
             <span class="gh-meta-sep">&middot;</span>
-            <span>{{reading_time}}</span>
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="YYYY年M月D日"}}</time>
         </div>
     </div>
 </article>
