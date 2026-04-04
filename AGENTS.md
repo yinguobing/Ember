@@ -64,6 +64,7 @@ Ember is a clean and modern Ghost theme with a focus on readability and elegant 
 - **`author.hbs`**: Author archive with profile
 - **`custom-full-feature-image.hbs`**: Full-screen cover image post
 - **`custom-wide-feature-image.hbs`**: Wide feature image post
+- **`custom-all-tags.hbs`**: All tags page with 6-column grid layout
 
 ## Build Commands
 
@@ -120,6 +121,7 @@ Defined in `package.json` under `config.custom`:
 | `tag_slugs_for_popular_tags` | text | - | - |
 | `hero_scramble_phrases` | text | - | "探索未知,发现美好,创造价值,分享见解" |
 | `hero_scramble_speed` | select | Fast, Normal, Slow | Normal |
+| `tags_page_slug` | text | - | `tags` | Slug for the all tags page
 
 ## Key Features
 
@@ -127,7 +129,7 @@ Defined in `package.json` under `config.custom`:
 - **Hero Section**: Animated gradient background with text scramble animation
 - **What's New**: Three-column grid showing recent posts (1 large + 4 small)
 - **Featured Slider**: Dark-themed carousel for featured posts
-- **Popular Tags**: Visual tag cloud with background images
+- **Popular Tags**: Visual tag cloud with background images, now renamed to "热门主题" with link to all tags page
 - **More Posts**: 8-card grid with "更多内容" pagination link
 
 ### Post Cards
@@ -166,10 +168,31 @@ Gscan checks for:
 
 ## Deployment
 
-1. Run `yarn zip` to create `dist/ember.zip`
+1. Run `yarn zip` or `gulp zip` to create `dist/ember.zip`
 2. Upload via Ghost Admin → Design → Change theme → Upload
 
 Or deploy to Ghost(Pro) via GitHub integration.
+
+## Release Process
+
+```bash
+# 1. Update version in package.json
+# 2. Build and test
+yarn test
+
+# 3. Create distribution zip
+gulp zip
+
+# 4. Commit version bump
+git add package.json
+git commit -m "chore: bump version to x.x.x"
+
+# 5. Create git tag
+git tag -a vx.x.x -m "Release vx.x.x"
+
+# 6. Push to remote
+git push origin main --tags
+```
 
 ## Code Style Guidelines
 
