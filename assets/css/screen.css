@@ -2312,3 +2312,148 @@ html {
 .gh-card-image-holder {
     position: relative;
 }
+/* ============================================
+   Share Buttons - Article Footer
+   ============================================ */
+
+.gh-share-buttons {
+    margin-top: 48px;
+    margin-bottom: 32px;
+}
+
+.gh-share-buttons-inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.gh-share-label {
+    font-size: 1.4rem;
+    color: var(--color-secondary-text);
+    margin-right: 4px;
+}
+
+.gh-share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--color-light-gray);
+    color: var(--color-secondary-text);
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.gh-share-btn:hover {
+    transform: translateY(-2px);
+}
+
+.gh-share-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Individual platform colors on hover */
+.gh-share-weibo:hover {
+    background-color: #E6162D;
+    color: #fff;
+}
+
+.gh-share-x:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.gh-share-facebook:hover {
+    background-color: #1877F2;
+    color: #fff;
+}
+
+.gh-share-wechat:hover {
+    background-color: #07C160;
+    color: #fff;
+}
+
+/* WeChat QR Code Modal */
+.gh-wechat-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.gh-wechat-modal-content {
+    position: relative;
+    background: var(--color-white);
+    padding: 32px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 280px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.gh-wechat-modal-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 2.4rem;
+    color: var(--color-secondary-text);
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.gh-wechat-modal-close:hover {
+    color: var(--color-darker-gray);
+}
+
+.gh-wechat-modal-title {
+    font-size: 1.5rem;
+    color: var(--color-darker-gray);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.gh-wechat-modal-content img {
+    width: 150px;
+    height: 150px;
+    border-radius: 4px;
+}
+
+/* Mobile responsive */
+@media (max-width: 767px) {
+    .gh-share-buttons {
+        margin-top: 32px;
+        margin-bottom: 24px;
+    }
+    
+    .gh-share-buttons-inner {
+        justify-content: center;
+    }
+    
+    .gh-share-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .gh-share-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}

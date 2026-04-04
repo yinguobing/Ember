@@ -1,0 +1,39 @@
+<div class="gh-share-buttons gh-canvas">
+    <div class="gh-share-buttons-inner">
+        <span class="gh-share-label">{{t "Share"}}</span>
+        <button class="gh-share-btn gh-share-wechat" 
+                aria-label="{{t "Share on WeChat"}}"
+                onclick="document.getElementById('wechat-modal').style.display='flex'">
+            {{> "icons/wechat"}}
+        </button>
+        <a href="https://service.weibo.com/share/share.php?url={{url absolute="true"}}&title={{encode title}}" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="gh-share-btn gh-share-weibo" 
+           aria-label="{{t "Share on Weibo"}}">
+            {{> "icons/weibo"}}
+        </a>
+        <a href="https://twitter.com/intent/tweet?url={{url absolute="true"}}&text={{encode title}}" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="gh-share-btn gh-share-x" 
+           aria-label="{{t "Share on X"}}">
+            {{> "icons/twitter"}}
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="gh-share-btn gh-share-facebook" 
+           aria-label="{{t "Share on Facebook"}}">
+            {{> "icons/facebook"}}
+        </a>
+    </div>
+</div>
+
+<div id="wechat-modal" class="gh-wechat-modal" onclick="this.style.display='none'">
+    <div class="gh-wechat-modal-content" onclick="event.stopPropagation()">
+        <button class="gh-wechat-modal-close" onclick="document.getElementById('wechat-modal').style.display='none'">&times;</button>
+        <p class="gh-wechat-modal-title">{{t "Scan to share on WeChat"}}</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{url absolute="true"}}" alt="WeChat QR Code">
+    </div>
+</div>
