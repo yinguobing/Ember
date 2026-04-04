@@ -4,7 +4,7 @@
     {{#get "tags" filter="slug:[{{@custom.tag_slugs_for_popular_tags}}]" include="count.posts"}}
         {{#if tags}}
         <section class="gh-popular-tags">
-            <h2 class="gh-section-title">{{t "热门标签"}}</h2>
+            <h2 class="gh-section-title">{{t "热门主题"}}</h2>
             <div class="gh-tags-cloud">
                 {{#foreach tags}}
                 <a href="{{url}}" class="gh-tag-item"
@@ -14,13 +14,21 @@
                 </a>
                 {{/foreach}}
             </div>
+            <footer class="gh-popular-tags-footer">
+                <a class="gh-more-link" href="{{@site.url}}/tags">
+                    {{t "全部主题"}}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </a>
+            </footer>
         </section>
         {{/if}}
     {{/get}}
 {{else}}
     {{!-- 默认：使用文章数最多的 tags --}}
     <section class="gh-popular-tags">
-        <h2 class="gh-section-title">{{t "热门标签"}}</h2>
+        <h2 class="gh-section-title">{{t "热门主题"}}</h2>
         <div class="gh-tags-cloud">
             {{#get "tags" include="count.posts" order="count.posts desc" limit="10"}}
             {{#foreach tags}}
@@ -32,5 +40,13 @@
             {{/foreach}}
             {{/get}}
         </div>
+        <footer class="gh-popular-tags-footer">
+            <a class="gh-more-link" href="{{@site.url}}/tags">
+                {{t "全部主题"}}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </a>
+        </footer>
     </section>
 {{/if}}

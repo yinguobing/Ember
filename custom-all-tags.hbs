@@ -1,0 +1,69 @@
+{{!< default}}
+
+{{#post}}
+    {{!-- 全宽 Feature Image Cover --}}
+    {{#if feature_image}}
+        <section class="gh-cover loading gh-outer">
+            <img
+                class="gh-cover-image"
+                srcset="{{img_url feature_image size="s"}} 300w,
+                        {{img_url feature_image size="m"}} 720w,
+                        {{img_url feature_image size="l"}} 960w,
+                        {{img_url feature_image size="xl"}} 1200w,
+                        {{img_url feature_image size="xxl"}} 2000w"
+                sizes="100vw"
+                src="{{img_url feature_image size="xl"}}"
+                alt="{{title}}"
+            >
+            <div class="gh-cover-content">
+                <h1 class="gh-cover-title">{{title}}</h1>
+                {{#if custom_excerpt}}
+                    <p class="gh-cover-description">{{custom_excerpt}}</p>
+                {{/if}}
+            </div>
+        </section>
+    {{/if}}
+
+    <main class="gh-main gh-outer">
+        <div class="gh-inner">
+            {{!-- 页面标题（如果没有 feature image） --}}
+            {{#unless feature_image}}
+                <section class="gh-pagehead">
+                    <h1 class="gh-pagehead-title">{{title}}</h1>
+                    {{#if custom_excerpt}}
+                        <div class="gh-pagehead-description">{{custom_excerpt}}</div>
+                    {{/if}}
+                </section>
+            {{/unless}}
+
+            {{!-- 页面内容 --}}
+            {{#if html}}
+                <section class="gh-content gh-canvas">
+                    {{content}}
+                </section>
+            {{/if}}
+
+            {{!-- 所有标签 - 6栏布局 --}}
+            <section class="gh-all-tags">
+                {{#get "tags" include="count.posts" order="count.posts desc" limit="all"}}
+                    {{#if tags}}
+                        <div class="gh-all-tags-grid">
+                            {{#foreach tags}}
+                                <a href="{{url}}" class="gh-tag-item"
+                                    style="{{#if feature_image}}background-image: url('{{img_url feature_image size="m"}}');{{/if}}{{#if accent_color}} --tag-accent-color: {{accent_color}};{{/if}}">
+                                    <span class="gh-tag-overlay"></span>
+                                    <span class="gh-tag-name">{{name}}</span>
+                                    <span class="gh-tag-count">{{count.posts}} {{t "篇"}}</span>
+                                </a>
+                            {{/foreach}}
+                        </div>
+                    {{else}}
+                        <p class="gh-no-tags">{{t "暂无标签"}}</p>
+                    {{/if}}
+                {{/get}}
+            </section>
+        </div>
+    </main>
+{{/post}}
+
+{{#contentFor "body_class"}}{{#if post.feature_image}} is-head-transparent{{/if}}{{/contentFor}}
