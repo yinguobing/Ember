@@ -2210,6 +2210,12 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 /* Prevent horizontal scroll from hero blobs */
 html {
     overflow-x: hidden;
+    scrollbar-gutter: stable;
+}
+
+/* Undo Ghost Portal's scrollbar compensation when search is open */
+body[style*="overflow: hidden"] {
+    margin-right: 0 !important;
 }
 
 /* Hero Animated Background
