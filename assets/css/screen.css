@@ -1759,6 +1759,11 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 }
 
 /* Grid specific adjustments */
+.gh-home-grid-col-2 .gh-card-small,
+.gh-home-grid-col-3 .gh-card-small {
+    flex: 1;
+}
+
 .gh-home-grid-col-2 .gh-card-small-content,
 .gh-home-grid-col-3 .gh-card-small-content {
     padding: 16px;
