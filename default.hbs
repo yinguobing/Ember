@@ -13,6 +13,26 @@
     </title>
     <link rel="stylesheet" href="{{asset "built/screen.css"}}">
 
+    <style>
+        :root {
+            --background-color: {{@custom.site_background_color}}
+        }
+    </style>
+
+    <script>
+        var accentColor = getComputedStyle(document.documentElement).getPropertyValue('--background-color');
+        accentColor = accentColor.trim().slice(1);
+        if (accentColor.length === 3) {
+            accentColor = accentColor[0] + accentColor[0] + accentColor[1] + accentColor[1] + accentColor[2] + accentColor[2];
+        }
+        var r = parseInt(accentColor.substr(0, 2), 16);
+        var g = parseInt(accentColor.substr(2, 2), 16);
+        var b = parseInt(accentColor.substr(4, 2), 16);
+        var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+        var textColor = (yiq >= 128) ? 'dark' : 'light';
+        document.documentElement.className = 'has-' + textColor + '-text';
+    </script>
+
     {{ghost_head}}
 </head>
 

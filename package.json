@@ -60,6 +60,10 @@
                 ],
                 "default": "Light"
             },
+            "site_background_color": {
+                "type": "color",
+                "default": "#ffffff"
+            },
             "title_font": {
                 "type": "select",
                 "options": [

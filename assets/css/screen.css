@@ -12,6 +12,11 @@
     --footer-spacing: 120px;
 }
 
+/* Use admin-chosen background color from @custom.site_background_color */
+body {
+    background-color: var(--background-color, var(--color-white));
+}
+
 @media (max-width: 767px) {
     :root {
         --footer-spacing: 64px;
@@ -2204,12 +2209,16 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 
 /* Home template background color */
 .home-template {
-    background-color: #e8e8edb3;
+    background-color: var(--background-color, #e8e8edb3);
 }
 
 .home-template .gh-head {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--background-color, rgba(255, 255, 255, 0.3));
     backdrop-filter: blur(10px);
+}
+
+.has-light-text.home-template .gh-head {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 /* Prevent horizontal scroll from hero blobs */
@@ -2218,8 +2227,15 @@ html {
     scrollbar-gutter: stable;
 }
 
-/* Undo Ghost Portal's scrollbar compensation when search is open */
+/* Undo Ghost Portal's scrollbar compensation when search/portal is open */
 body[style*="overflow: hidden"] {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Portal adds margin-right inline on its iframe to compensate scrollbar */
+body[style*="overflow: hidden"] #ghost-portal-root,
+body[style*="overflow: hidden"] #ghost-portal-root iframe {
     margin-right: 0 !important;
 }
 
@@ -2303,30 +2319,69 @@ body[style*="overflow: hidden"] {
     z-index: 1;
 }
 
-/* Dark mode support for hero background */
-@media (prefers-color-scheme: dark) {
-    .gh-hero-blob {
-        opacity: 0.3;
-    }
+/* ============================================
+   Color scheme — Source-style contrast adaptation
+   ============================================ */
 
-    .gh-hero-blob-1 {
-        background: linear-gradient(135deg, var(--ghost-accent-color) 0%, #4338ca 100%);
-    }
+:root.has-light-text {
+    --color-darker-gray: #fff;
+    --color-secondary-text: rgb(255 255 255 / 0.64);
+    --color-lighter-gray: rgb(255 255 255 / 0.1);
+    --color-light-gray: rgb(255 255 255 / 0.15);
+    --color-mid-gray: rgb(255 255 255 / 0.3);
+    --color-dark-gray: rgb(255 255 255 / 0.55);
+}
 
-    .gh-hero-blob-2 {
-        background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
-    }
+/* Buttons: use inverted colors so they remain visible */
+.has-light-text .gh-btn {
+    background-color: var(--color-white);
+    color: var(--color-black);
+}
 
-    .gh-hero-blob-3 {
-        background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
-    }
+.has-light-text .gh-head-link {
+    color: var(--color-black);
+}
+
+/* Footer: keep a solid dark background */
+.has-light-text .gh-foot {
+    background-color: var(--color-black);
+}
+
+/* Premium badge: keep dark background */
+.has-light-text .gh-card-premium-badge {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+/* Hero blobs: reduce opacity on dark backgrounds */
+.has-light-text .gh-hero-blob {
+    opacity: 0.3;
+}
+
+/* Subscribe section: keep text visible */
+.has-light-text .gh-subscribe-title {
+    color: var(--color-black);
+}
+
+.has-light-text .gh-subscribe-btn {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+/* Table scroll shadows: use dark background */
+.has-light-text .gh-content table:not(.gist table) td:first-child {
+    background-image: linear-gradient(90deg, var(--color-white) 50%, rgba(255, 255, 255, 0));
+}
+
+.has-light-text .gh-content table:not(.gist table) td:last-child {
+    background-image: linear-gradient(270deg, var(--color-white) 50%, rgba(255, 255, 255, 0));
 }
 
 
-/* Home template background color */
+
 .home-template,
 .paged {
-    background-color: #e8e8edb3;
+    background-color: var(--background-color, #e8e8edb3);
 }
 
 /* Post Grid (4-column layout for index page)
