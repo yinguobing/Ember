@@ -2353,6 +2353,14 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     color: var(--color-white);
 }
 
+/* Cards and slider: switch to dark backgrounds so flipped light text remains readable */
+.has-light-text .gh-card-large,
+.has-light-text .gh-card-small,
+.has-light-text .gh-card-more,
+.has-light-text .gh-featured-slider-inner {
+    background-color: #1e1e2e;
+}
+
 /* Hero blobs: reduce opacity on dark backgrounds */
 .has-light-text .gh-hero-blob {
     opacity: 0.3;
