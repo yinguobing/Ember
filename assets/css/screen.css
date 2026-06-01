@@ -35,13 +35,18 @@ figcaption {
     font-weight: 500;
 }
 
-body:not(.is-head-stacked) .gh-head {
+body:not(.is-head-transparent) .gh-head {
     height: 88px;
     position: relative;
     z-index: 10;
 }
 
-body:not(.is-head-stacked) .gh-head-inner {
+body.is-head-transparent .gh-head {
+    height: 88px;
+    z-index: 90;
+}
+
+body .gh-head-inner {
     border-bottom: 1px solid var(--color-light-gray);
 }
 
@@ -49,15 +54,13 @@ body:not(.is-head-stacked) .gh-head-inner {
     letter-spacing: -0.006em;
 }
 
-/* Unified header: semi-transparent + blur, overrides all variants */
-.gh-head {
-    background-color: rgba(255, 255, 255, 0.3) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+/* Semi-transparent header */
+.gh-head:not(.is-head-transparent) {
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
-.has-light-text .gh-head {
-    background-color: rgba(0, 0, 0, 0.3) !important;
+.has-light-text .gh-head:not(.is-head-transparent) {
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 /* White logo for dark backgrounds (has-light-text) */

@@ -46,10 +46,9 @@
                 "type": "select",
                 "options": [
                     "Logo on the left",
-                    "Logo in the middle",
-                    "Stacked"
+                    "Logo in the middle"
                 ],
-                "default": "Stacked"
+                "default": "Logo on the left"
             },
             "site_background_color": {
                 "type": "color",
