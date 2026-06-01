@@ -35,15 +35,10 @@ figcaption {
     font-weight: 500;
 }
 
-body:not(.is-head-stacked):not(.is-head-transparent) .gh-head {
+body:not(.is-head-stacked) .gh-head {
     height: 88px;
     position: relative;
     z-index: 10;
-}
-
-body:not(.is-head-stacked).is-head-transparent .gh-head {
-    height: 88px;
-    z-index: 90;
 }
 
 body:not(.is-head-stacked) .gh-head-inner {
@@ -54,16 +49,23 @@ body:not(.is-head-stacked) .gh-head-inner {
     letter-spacing: -0.006em;
 }
 
-body:not(.is-head-transparent):not(.is-head-brand):not(.is-head-dark) .gh-head-logo img+img {
-    display: none;
+/* Unified header: semi-transparent + blur, overrides all variants */
+.gh-head {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-body:is(.is-head-transparent, .is-head-brand, .is-head-dark) .gh-head-logo img+img {
+.has-light-text .gh-head {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* White logo for dark backgrounds (has-light-text) */
+.has-light-text .gh-head-logo img+img {
     opacity: 1;
 }
 
-.is-head-transparent .gh-head-logo img:first-of-type:not(:only-child) {
-    display: block;
+.has-light-text .gh-head-logo img:first-of-type:not(:only-child) {
     opacity: 0;
 }
 
@@ -2212,15 +2214,6 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     background-color: var(--background-color, #e8e8edb3);
 }
 
-.home-template .gh-head {
-    background-color: var(--background-color, rgba(255, 255, 255, 0.3));
-    backdrop-filter: blur(10px);
-}
-
-.has-light-text.home-template .gh-head {
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
 /* Prevent horizontal scroll from hero blobs */
 html {
     overflow-x: hidden;
@@ -2335,10 +2328,6 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 /* Buttons: use inverted colors so they remain visible */
 .has-light-text .gh-btn {
     background-color: var(--color-white);
-    color: var(--color-black);
-}
-
-.has-light-text .gh-head-link {
     color: var(--color-black);
 }
 
