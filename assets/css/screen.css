@@ -1472,6 +1472,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     color: var(--color-secondary-text);
     display: flex;
     align-items: center;
+    gap: 8px;
 }
 
 .gh-meta-sep {
@@ -1527,6 +1528,13 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     border-radius: 5px;
 }
 
+.gh-featured-slider-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 24px;
+}
+
 /* Section Titles */
 .gh-section-subtitle {
     font-size: 1.4rem;
@@ -1576,6 +1584,10 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 
 .gh-card-large .gh-card-content {
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    min-height: 21rem;
 }
 
 .gh-card-large .gh-card-image-holder {
@@ -1629,10 +1641,6 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     opacity: 0.8;
 }
 
-.gh-card-large .gh-card-content {
-    flex-shrink: 0;
-}
-
 .gh-card-large .gh-card-title {
     font-size: 2rem;
     font-weight: 600;
@@ -1666,6 +1674,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-top: auto;
 }
 
 /* Small Card - Styled like gh-card-more */
@@ -1722,6 +1731,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     display: flex;
     flex-direction: column;
     flex: 1;
+    min-height: 21rem;
 }
 
 .gh-card-small .gh-card-tag {
@@ -1778,6 +1788,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 .gh-home-grid-col-2 .gh-card-small-content,
 .gh-home-grid-col-3 .gh-card-small-content {
     padding: 16px;
+    min-height: 21rem;
 }
 
 /* Popular Tags */
@@ -1942,7 +1953,9 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 
 .gh-card-more-content {
     padding: 16px;
-    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 21rem;
 }
 
 /* Fallback for browsers without aspect-ratio support */
@@ -2010,21 +2023,19 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-top: auto;
 }
 
 .gh-card-more-author {
     color: var(--color-secondary-text);
 }
 
-/* More Posts Footer - Centered text link */
+/* More Posts Footer */
 .gh-more-posts-footer {
     display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-top: 48px;
+    justify-content: flex-end;
     padding-top: 32px;
-    border-top: 1px solid var(--color-light-gray);
 }
 
 .gh-pagination {
@@ -2139,7 +2150,6 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     }
 
     .gh-more-posts-footer {
-        margin-top: 40px;
         padding-top: 24px;
     }
 }

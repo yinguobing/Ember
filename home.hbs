@@ -36,7 +36,7 @@
         {{/get}}
 
         {{!-- Featured Slider --}}
-        {{#get "posts" filter="featured:true" limit="5" include="authors"}}
+        {{#get "posts" filter="featured:true" limit="5" include="authors,tags"}}
         {{#if posts}}
         <section class="gh-featured-slider">
             <h2 class="gh-section-title">精选内容</h2>
@@ -98,6 +98,16 @@
                     </div>
                 </div>
             </div>
+
+            {{!-- Footer --}}
+            <footer class="gh-featured-slider-footer">
+                <a class="gh-more-link" href="{{@site.url}}/tag/featured/">
+                    全部精选
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </a>
+            </footer>
         </section>
         {{/if}}
         {{/get}}
