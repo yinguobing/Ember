@@ -8,6 +8,7 @@
     /* stylelint-disable-line value-keyword-case */
     --head-nav-gap: 32px;
     --color-primary-text: var(--color-darker-gray);
+    --color-card-bg: var(--color-white);
     --h1-size: 4.4rem;
     --footer-spacing: 120px;
 }
@@ -1568,7 +1569,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: var(--color-white);
+    background: var(--color-card-bg);
     border-radius: 12px;
     overflow: hidden;
 }
@@ -1670,7 +1671,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 /* Small Card - Styled like gh-card-more */
 .gh-card-small {
     position: relative;
-    background: var(--color-white);
+    background: var(--color-card-bg);
     border-radius: 12px;
     overflow: hidden;
     display: flex;
@@ -1914,7 +1915,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 /* Card More - 4:3 Image Layout */
 .gh-card-more {
     position: relative;
-    background: var(--color-white);
+    background: var(--color-card-bg);
     border-radius: 12px;
     overflow: hidden;
 }
@@ -2320,12 +2321,13 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
    ============================================ */
 
 :root.has-light-text {
-    --color-darker-gray: #fff;
+    --color-darker-gray: rgb(255 255 255 / 0.90);
     --color-secondary-text: rgb(255 255 255 / 0.64);
     --color-lighter-gray: rgb(255 255 255 / 0.1);
     --color-light-gray: rgb(255 255 255 / 0.15);
     --color-mid-gray: rgb(255 255 255 / 0.3);
     --color-dark-gray: rgb(255 255 255 / 0.55);
+    --color-card-bg: #1e1e2e;
 }
 
 /* Buttons: use inverted colors so they remain visible */
@@ -2345,12 +2347,10 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     color: var(--color-white);
 }
 
-/* Cards and slider: switch to dark backgrounds so flipped light text remains readable */
-.has-light-text .gh-card-large,
-.has-light-text .gh-card-small,
-.has-light-text .gh-card-more,
+/* Cards use --color-card-bg (already flipped by :root.has-light-text) */
+/* Slider: switch to dark surface color */
 .has-light-text .gh-featured-slider-inner {
-    background-color: #1e1e2e;
+    background-color: var(--color-card-bg);
 }
 
 /* Hero blobs: reduce opacity on dark backgrounds */
@@ -2609,4 +2609,137 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
         width: 20px;
         height: 20px;
     }
+}
+
+
+/* ============================================
+   CJK (Chinese) Typography Overrides
+   Applied automatically when <html lang="zh">
+   ============================================ */
+
+/* ---- Font stacks with CJK fallbacks ---- */
+:root:lang(zh) {
+    --font-sans: Inter, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+    --font-serif: Lora, "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+}
+
+/* ---- Global heading reset ---- */
+:lang(zh) h1,
+:lang(zh) h2,
+:lang(zh) h3,
+:lang(zh) h4,
+:lang(zh) h5,
+:lang(zh) h6 {
+    letter-spacing: normal;
+    line-height: 1.5;
+}
+
+/* ---- Letter-spacing: reset negative tracking ---- */
+:lang(zh) .nav,
+:lang(zh) .gh-head-logo,
+:lang(zh) .gh-topic-grid .gh-topic-name,
+:lang(zh) .gh-topic-grid .gh-card-title,
+:lang(zh) .gh-topic-grid .gh-card.large .gh-card-title,
+:lang(zh) .gh-topic-header .gh-topic-name,
+:lang(zh) .gh-topic-minimal .gh-card-title,
+:lang(zh) .gh-topic-link,
+:lang(zh) .gh-article-meta,
+:lang(zh) .gh-author-name,
+:lang(zh) .gh-copyright,
+:lang(zh) .gh-pagehead-title,
+:lang(zh) .gh-section-title,
+:lang(zh) .gh-subscribe-btn,
+:lang(zh) .gh-hero-title-scramble,
+:lang(zh) .gh-cta-title,
+:lang(zh) .tag-template .gh-cover-title,
+:lang(zh) .gh-card-small-title,
+:lang(zh) .gh-card-more-title,
+:lang(zh) .gh-card-large .gh-card-title,
+:lang(zh) .gh-featured-slide-title {
+    letter-spacing: normal;
+}
+
+/* ---- Letter-spacing: high-specificity shared-theme selectors ---- */
+:lang(zh).has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-card-title,
+:lang(zh).has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-article-title,
+:lang(zh).has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-content > [id],
+:lang(zh).has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-cover-title {
+    letter-spacing: normal;
+}
+
+/* ---- Line-height: card and hero titles ---- */
+:lang(zh) .gh-topic-grid .gh-card-title,
+:lang(zh) .gh-topic-grid .gh-card.no-image.large .gh-card-title,
+:lang(zh) .gh-topic-grid .gh-card.featured.large .gh-card-title,
+:lang(zh) .gh-card-large .gh-card-title,
+:lang(zh) .gh-card-small-title,
+:lang(zh) .gh-card-more-title,
+:lang(zh) .gh-featured-slide-title {
+    line-height: 1.5;
+}
+
+:lang(zh) .gh-hero-title,
+:lang(zh) .gh-hero-title-scramble,
+:lang(zh) .gh-hero-title-flip,
+:lang(zh) .gh-subscribe-title {
+    line-height: 1.5;
+}
+
+/* ---- Line-height: excerpts and body text ---- */
+:lang(zh) .gh-card-large .gh-card-excerpt,
+:lang(zh) .gh-card-small-excerpt,
+:lang(zh) .gh-card-more-excerpt,
+:lang(zh) .gh-topic-grid .gh-card-excerpt,
+:lang(zh) .gh-article-excerpt,
+:lang(zh) .gh-featured-slide-excerpt {
+    line-height: 1.7;
+}
+
+:lang(zh) .gh-author-name,
+:lang(zh) .gh-author-name-list {
+    line-height: 1.5;
+}
+
+/* ---- Font-size: boost metadata above CJK readability threshold ---- */
+:lang(zh) .gh-card-footer {
+    font-size: 1.3rem;
+}
+
+:lang(zh) .gh-article-tag {
+    font-size: 1.3rem;
+}
+
+:lang(zh) .gh-card-small-meta,
+:lang(zh) .gh-card-more-meta,
+:lang(zh) .gh-featured-slide-meta {
+    font-size: 1.3rem;
+}
+
+:lang(zh) figcaption {
+    font-size: 1.4rem;
+}
+
+:lang(zh) .gh-content table:not(.gist table) th {
+    font-size: 1.3rem;
+}
+
+/* ---- Text-transform: remove uppercase (meaningless for CJK) ---- */
+:lang(zh) .gh-topic-grid .gh-topic-name,
+:lang(zh) .gh-pagehead-title,
+:lang(zh) .gh-section-title,
+:lang(zh) .gh-section-subtitle,
+:lang(zh) .gh-article-tag,
+:lang(zh) .gh-card-footer,
+:lang(zh) .gh-cover-title,
+:lang(zh) .gh-content table:not(.gist table) th {
+    text-transform: none;
+}
+
+/* ---- Text-align: justify body paragraphs (CJK standard) ---- */
+:lang(zh) .gh-content > p,
+:lang(zh) .gh-content > blockquote,
+:lang(zh) .gh-content > ul,
+:lang(zh) .gh-content > ol,
+:lang(zh) .gh-content > dl {
+    text-align: justify;
 }
