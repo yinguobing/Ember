@@ -2368,13 +2368,20 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     color: var(--color-white);
 }
 
-/* Table scroll shadows: use dark background */
-.has-light-text .gh-content table:not(.gist table) td:first-child {
-    background-image: linear-gradient(90deg, var(--color-white) 50%, rgba(255, 255, 255, 0));
+/* Remove table scroll shadow and overlay gradients */
+.gh-content table:not(.gist table) {
+    background: none;
 }
 
-.has-light-text .gh-content table:not(.gist table) td:last-child {
-    background-image: linear-gradient(270deg, var(--color-white) 50%, rgba(255, 255, 255, 0));
+.gh-content table:not(.gist table) td:first-child,
+.gh-content table:not(.gist table) td:last-child {
+    background-image: none;
+}
+
+/* Table header: dark background in dark mode for contrast */
+.has-light-text .gh-content table:not(.gist table) th {
+    background-color: var(--color-light-gray);
+    color: var(--color-darker-gray);
 }
 
 
