@@ -1,27 +1,28 @@
 # Ember
 
-Ember is a clean, modern [Ghost](https://ghost.org/) theme designed for content-focused publications. Built on top of the excellent [Headline](https://github.com/TryGhost/Headline) theme by Ghost Foundation.
+Ember is a clean, modern [Ghost](https://ghost.org/) theme designed for content-focused publications. Built on the excellent [Headline](https://github.com/TryGhost/Headline) theme by the Ghost Foundation and extensively customized for personal blogging.
 
-**Demo:** https://headline.ghost.io
+**Demo:** https://yinguobing.com
 
 ## Credits
 
-This theme is based on [Headline](https://github.com/TryGhost/Headline) by Ghost Foundation. We've preserved the solid foundation of Headline while refining the visual design and user experience.
+This theme is based on [Headline](https://github.com/TryGhost/Headline) by Ghost Foundation. We've preserved the solid foundation of Headline while adding a custom homepage layout, hero animations, and CJK typography support.
 
 ## Features
 
-- **Clean Card Layout** — All posts display in elegant white cards with consistent 16px padding
-- **Tag Display** — Primary tags shown as accent-colored text (no background badges)
-- **Featured Content Slider** — Highlight important posts with a sleek 1:1 image-content slider
-- **Responsive Grid** — "What's New" section with large + small card grid layout
-- **Optimized Typography** — Carefully tuned font sizes and spacing for readability
-- **Dark Mode Ready** — CSS variables for easy theme customization
+- **Hero Section** — Animated blob gradient background with configurable text scramble animation. Supports Publication Cover image as an alternative background
+- **Card Layout** — Posts display in clean cards with responsive images (srcset), tag badges, and metadata
+- **Featured Content Slider** — Dark-themed carousel for highlighted posts with autoplay and navigation controls
+- **Homepage Grid** — "What's New" three-column layout (1 large + 4 small cards) plus an 8-card "More Posts" grid
+- **Popular Tags Cloud** — Visual tag display with background images and dark overlays
+- **CJK Typography** — Automatic Chinese/Japanese/Korean font stack and spacing adjustments when `lang="zh"`
+- **Dark Mode** — Automatic light/dark adaptation via CSS custom properties based on background color luminance
 
 ## Installation
 
-1. Download the latest release or clone this repository
+1. Download the [latest release](https://github.com/yinguobing/Ember/releases) or clone this repository
 2. Run `yarn zip` to create the distribution file
-3. Upload `dist/ember.zip` to your Ghost Admin → Design → Change theme
+3. Upload `dist/ember.zip` to Ghost Admin → Design → Change theme
 
 ## Development
 
@@ -42,15 +43,19 @@ Edit files in `/assets/css/` — they will be compiled to `/assets/built/` autom
 
 ## Customization
 
-The following custom settings are available in Ghost Admin:
+The following settings are available in Ghost Admin → Design:
 
-- **Navigation Layout** — Logo position (left, middle, or stacked)
-- **Header Style** — Light, accent color, or dark
-- **Title Font** — Modern sans-serif or elegant serif
-- **Body Font** — Modern sans-serif or elegant serif
-- **Footer Text** — Custom copyright text
-- **Popular Tags** — Select which tags to feature
-- **Hero Scramble** — Animated text phrases for homepage hero
+| Setting | Description |
+|---------|-------------|
+| **Navigation Layout** | Logo position — left or middle |
+| **Site Background Color** | Page background color, also drives light/dark mode |
+| **Title / Body Font** | Modern sans-serif (Inter) or elegant serif (Lora) |
+| **Hero Background Type** | Animated blobs or Publication Cover image |
+| **Hero Scramble Phrases** | Comma-separated text phrases for the hero animation |
+| **Hero Scramble Speed** | Fast, Normal, or Slow |
+| **Hero Horizontal / Vertical** | Percentage-based text position (0–100) |
+| **Footer Text** | Custom copyright text |
+| **Popular Tags** | Comma-separated tag slugs to feature on homepage |
 
 ## Original Theme
 
