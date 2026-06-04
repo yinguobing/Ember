@@ -24,13 +24,18 @@ Ember is a clean and modern Ghost theme with a focus on readability and elegant 
 ├── *.hbs                    # Root templates (default, home, post, page, etc.)
 ├── partials/                # Reusable template components
 │   ├── icons/              # SVG icon partials
-│   ├── hero-section.hbs    # Hero section with animated background
+│   ├── hero-section.hbs    # Hero section with animated/cover background
 │   ├── popular-tags.hbs    # Popular tags cloud display
 │   ├── loop-card-large.hbs # Large featured post card
 │   ├── loop-card-small.hbs # Small post card
 │   ├── loop-card-more.hbs  # Post card for "more posts" grid
+│   ├── loop-grid.hbs       # Grid post card (topic sections)
+│   ├── loop-minimal.hbs    # Minimal post card (list sections)
+│   ├── topic-grid.hbs      # Topic section — grid layout
+│   ├── topic-minimal.hbs   # Topic section — list layout
 │   ├── post-meta.hbs       # Post metadata (authors, date, reading time)
 │   ├── feature-image.hbs   # Featured image component
+│   ├── share-buttons.hbs   # Social share buttons (Weibo, X, WeChat)
 │   ├── related-posts.hbs   # Related posts section
 │   ├── comments.hbs        # Comments section
 │   └── pswp.hbs            # PhotoSwipe lightbox markup
@@ -112,25 +117,27 @@ Defined in `package.json` under `config.custom`:
 
 | Option | Type | Choices | Default |
 |--------|------|---------|---------|
-| `navigation_layout` | select | Logo on the left, Logo in the middle, Stacked | Stacked |
-| `header_style` | select | Light, Accent color, Dark | Light |
+| `navigation_layout` | select | Logo on the left, Logo in the middle | Logo on the left |
+| `site_background_color` | color | - | `#ffffff` |
 | `title_font` | select | Modern sans-serif, Elegant serif | Modern sans-serif |
 | `body_font` | select | Modern sans-serif, Elegant serif | Elegant serif |
 | `white_publication_logo_for_transparent_header` | image | - | - |
 | `footer_text` | text | - | - |
 | `tag_slugs_for_popular_tags` | text | - | - |
-| `hero_scramble_phrases` | text | - | "探索未知,发现美好,创造价值,分享见解" |
+| `hero_background_type` | select | Animated Blobs, Cover Image | Animated Blobs |
+| `hero_scramble_phrases` | text | - | `探索未知,发现美好,创造价值,分享见解` |
 | `hero_scramble_speed` | select | Fast, Normal, Slow | Normal |
-| `tags_page_slug` | text | - | `tags` | Slug for the all tags page
+| `hero_scramble_horizontal` | text | - | `50` |
+| `hero_scramble_vertical` | text | - | `0` |
 
 ## Key Features
 
 ### Homepage Layout
-- **Hero Section**: Animated gradient background with text scramble animation
+- **Hero Section**: Supports two background modes — animated blob gradients, or Publication Cover image with blobs floating on top. Features configurable text scramble animation with custom phrases, speed, and percentage-based horizontal/vertical positioning
 - **What's New**: Three-column grid showing recent posts (1 large + 4 small)
-- **Featured Slider**: Dark-themed carousel for featured posts
-- **Popular Tags**: Visual tag cloud with background images, now renamed to "热门主题" with link to all tags page
-- **More Posts**: 8-card grid with "更多内容" pagination link
+- **Featured Slider**: Dark-themed carousel for featured posts (inline in `home.hbs`)
+- **Popular Tags**: Visual tag cloud with background images and dark overlays, links to all tags page
+- **More Posts**: 8-card grid (4×2) with pagination link
 
 ### Post Cards
 - Grid layout with responsive images (srcset)
@@ -139,9 +146,8 @@ Defined in `package.json` under `config.custom`:
 - Excerpt on larger cards
 
 ### Header Variants
-- Left logo / Middle logo / Stacked navigation
-- Light, Accent, or Dark header styles
-- Transparent header with blur effect on homepage
+- Left logo or Middle logo navigation layout
+- Semi-transparent header with blur effect
 
 ### Fonts
 - **Inter** (sans-serif): Modern, clean headings and UI
