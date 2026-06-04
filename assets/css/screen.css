@@ -9,6 +9,7 @@
     --head-nav-gap: 32px;
     --color-primary-text: var(--color-darker-gray);
     --color-card-bg: var(--color-white);
+    --color-featured-slider-bg: #16213E;
     --h1-size: 4.4rem;
     --footer-spacing: 120px;
 }
@@ -1096,13 +1097,18 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 
 /* Hero Section */
 .gh-hero-section {
-    padding: 160px 0 0;
+    position: relative;
+    padding-top: clamp(80px, calc(100px + var(--hero-vertical, 0) * 0.8vh), 500px);
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
     text-align: center;
 }
 
 .gh-hero-inner {
     max-width: 720px;
-    margin: 0 auto;
+    margin-left: calc((100% - 720px) * var(--hero-horizontal, 50) / 100);
+    margin-right: auto;
     padding: 0 20px;
 }
 
@@ -1359,7 +1365,7 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     margin: 0 auto;
     padding: 0;
     position: relative;
-    background-color: #16213E;
+    background-color: var(--color-featured-slider-bg);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -2164,7 +2170,15 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     }
 
     .gh-hero-section {
-        padding: 120px 0 0;
+        padding-top: clamp(60px, calc(80px + var(--hero-vertical, 0) * 0.3vh), 300px);
+        padding-right: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+    }
+
+    .gh-hero-inner {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .gh-hero-bg {
@@ -2248,10 +2262,6 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 
 /* Hero Animated Background
 /* ---------------------------------------------------------- */
-.gh-hero-section {
-    position: relative;
-}
-
 .gh-hero-bg {
     position: absolute;
     top: -140px;

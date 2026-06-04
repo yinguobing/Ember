@@ -94,6 +94,16 @@
                 ],
                 "default": "Normal",
                 "group": "homepage"
+            },
+            "hero_scramble_horizontal": {
+                "type": "text",
+                "default": "50",
+                "group": "homepage"
+            },
+            "hero_scramble_vertical": {
+                "type": "text",
+                "default": "0",
+                "group": "homepage"
             }
         }
     },
