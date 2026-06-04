@@ -1098,7 +1098,8 @@ body:not(.home-template) .gh-topic-grid .gh-card {
 /* Hero Section */
 .gh-hero-section {
     position: relative;
-    padding-top: clamp(80px, calc(100px + var(--hero-vertical, 0) * 0.8vh), 500px);
+    min-height: 480px;
+    padding-top: clamp(80px, calc(100px + var(--hero-vertical, 0) * 0.6vh), 300px);
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
@@ -2212,7 +2213,8 @@ body:not(.home-template) .gh-topic-grid .gh-card {
     }
 
     .gh-hero-section {
-        padding-top: clamp(60px, calc(80px + var(--hero-vertical, 0) * 0.3vh), 300px);
+        min-height: 360px;
+        padding-top: clamp(60px, calc(80px + var(--hero-vertical, 0) * 0.2vh), 200px);
         padding-right: 0;
         padding-bottom: 0;
         padding-left: 0;
