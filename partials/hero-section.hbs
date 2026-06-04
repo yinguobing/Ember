@@ -1,10 +1,17 @@
 {{!-- Hero Section - Text Scramble 动画 --}}
-<section class="gh-hero-section" style="--hero-horizontal: {{#if @custom.hero_scramble_horizontal}}{{@custom.hero_scramble_horizontal}}{{else}}50{{/if}}; --hero-vertical: {{#if @custom.hero_scramble_vertical}}{{@custom.hero_scramble_vertical}}{{else}}0{{/if}};">
+<section class="gh-hero-section{{#match @custom.hero_background_type "Cover Image"}}{{#if @site.cover_image}} gh-hero-cover{{/if}}{{/match}}" style="--hero-horizontal: {{#if @custom.hero_scramble_horizontal}}{{@custom.hero_scramble_horizontal}}{{else}}50{{/if}}; --hero-vertical: {{#if @custom.hero_scramble_vertical}}{{@custom.hero_scramble_vertical}}{{else}}0{{/if}};">
     <div class="gh-hero-bg">
         <div class="gh-hero-blob gh-hero-blob-1"></div>
         <div class="gh-hero-blob gh-hero-blob-2"></div>
         <div class="gh-hero-blob gh-hero-blob-3"></div>
     </div>
+    {{#match @custom.hero_background_type "Cover Image"}}
+        {{#if @site.cover_image}}
+            <div class="gh-hero-cover-bg">
+                <img class="gh-hero-cover-image" src="{{@site.cover_image}}" alt="{{@site.title}}">
+            </div>
+        {{/if}}
+    {{/match}}
     <div class="gh-hero-inner">
         <h1 class="gh-hero-title gh-hero-title-scramble">
             <span class="gh-scramble-text"

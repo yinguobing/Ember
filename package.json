@@ -95,6 +95,15 @@
                 "default": "Normal",
                 "group": "homepage"
             },
+            "hero_background_type": {
+                "type": "select",
+                "options": [
+                    "Animated Blobs",
+                    "Cover Image"
+                ],
+                "default": "Animated Blobs",
+                "group": "homepage"
+            },
             "hero_scramble_horizontal": {
                 "type": "text",
                 "default": "50",
