@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember - 简洁现代的 Ghost 博客主题</title>
+<meta name="description" content="Ember 是一款为内容创作而生的 Ghost 主题，支持动画背景、文字特效、CJK 排版优化与自动暗色模式。">
+<style>
+/* ============================================================
+   CSS Reset & Base
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg: #faf7f2;
+  --color-bg-alt: #f3efe8;
+  --color-surface: #ffffff;
+  --color-text: #2d2926;
+  --color-text-secondary: #6b6560;
+  --color-text-tertiary: #9a938c;
+  --color-accent: #c4704a;
+  --color-accent-glow: #d4895f;
+  --color-accent-deep: #a05a38;
+  --color-border: #e8e3db;
+  --color-warm-dark: #3a3430;
+  --color-code-bg: #f5f1eb;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --shadow-sm: 0 1px 3px rgba(45, 41, 38, 0.06);
+  --shadow-md: 0 4px 16px rgba(45, 41, 38, 0.08);
+  --shadow-lg: 0 12px 40px rgba(45, 41, 38, 0.10);
+  --shadow-glow: 0 0 80px rgba(196, 112, 74, 0.15);
+  --font-display: "Noto Serif SC", "Source Han Serif SC", "SimSun", "Songti SC", serif;
+  --font-body: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "Fira Code", "Consolas", "Monaco", monospace;
+  --transition-smooth: 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-bounce: 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.6rem;
+  line-height: 1.75;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  overflow-x: hidden;
+}
+
+/* Subtle grain texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--color-accent-deep);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================================================
+   Typography
+   ============================================================ */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+h1 { font-size: clamp(3.6rem, 5vw, 5.6rem); }
+h2 { font-size: clamp(2.4rem, 3.5vw, 3.6rem); }
+h3 { font-size: clamp(1.8rem, 2.5vw, 2.4rem); }
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(2rem, 5vw, 6rem);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background: rgba(250, 247, 242, 0.72);
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.nav.scrolled {
+  background: rgba(250, 247, 242, 0.92);
+  border-bottom-color: #d5cfc7;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.04em;
+}
+
+.nav-logo span {
+  color: var(--color-accent);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: color var(--transition-smooth);
+  letter-spacing: 0.03em;
+}
+
+.nav-links a:hover {
+  color: var(--color-accent);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 2rem;
+  background: var(--color-accent);
+  color: #fff !important;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 1.4rem;
+  transition: background var(--transition-smooth), transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.nav-cta:hover {
+  background: var(--color-accent-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(196, 112, 74, 0.3);
+}
+
+/* Mobile nav toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+}
+
+/* ============================================================
+   Hero Section
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12rem clamp(2rem, 6vw, 8rem) 8rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Warm ember glow background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 35%, rgba(212, 137, 95, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 70% 60%, rgba(196, 112, 74, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 80%, rgba(160, 90, 56, 0.08) 0%, transparent 50%);
+}
+
+/* Floating ember particles */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0;
+  animation: ember-float linear infinite;
+}
+
+.hero-particle:nth-child(1) { width: 6px; height: 6px; left: 15%; top: 40%; animation-duration: 8s; animation-delay: 0s; }
+.hero-particle:nth-child(2) { width: 4px; height: 4px; left: 25%; top: 55%; animation-duration: 10s; animation-delay: 1.5s; }
+.hero-particle:nth-child(3) { width: 8px; height: 8px; left: 60%; top: 30%; animation-duration: 12s; animation-delay: 0.8s; }
+.hero-particle:nth-child(4) { width: 5px; height: 5px; left: 75%; top: 50%; animation-duration: 9s; animation-delay: 2.2s; }
+.hero-particle:nth-child(5) { width: 3px; height: 3px; left: 40%; top: 65%; animation-duration: 11s; animation-delay: 3s; }
+.hero-particle:nth-child(6) { width: 7px; height: 7px; left: 85%; top: 35%; animation-duration: 13s; animation-delay: 1s; }
+.hero-particle:nth-child(7) { width: 4px; height: 4px; left: 50%; top: 25%; animation-duration: 7s; animation-delay: 0.4s; }
+.hero-particle:nth-child(8) { width: 6px; height: 6px; left: 10%; top: 70%; animation-duration: 14s; animation-delay: 2.8s; }
+
+@keyframes ember-float {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) scale(0.6);
+  }
+  15% {
+    opacity: 0.7;
+  }
+  35% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.65;
+    transform: translateY(-120px) translateX(30px) scale(1.3);
+  }
+  70% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-260px) translateX(-20px) scale(0.3);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.6rem 1.6rem;
+  background: rgba(196, 112, 74, 0.08);
+  border: 1px solid rgba(196, 112, 74, 0.15);
+  border-radius: 100px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 3.2rem;
+  letter-spacing: 0.04em;
+}
+
+.hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.8); }
+}
+
+.hero h1 {
+  margin-bottom: 2rem;
+  color: var(--color-warm-dark);
+}
+
+.hero h1 .accent {
+  color: var(--color-accent);
+  position: relative;
+}
+
+.hero h1 .accent::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-accent);
+  opacity: 0.25;
+  border-radius: 2px;
+}
+
+.hero-desc {
+  font-size: clamp(1.6rem, 2vw, 1.9rem);
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 4rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.2rem 2.8rem;
+  border-radius: 100px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-smooth);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(196, 112, 74, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-deep);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(196, 112, 74, 0.35);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(45, 41, 38, 0.06);
+}
+
+.btn-arrow {
+  display: inline-block;
+  transition: transform var(--transition-smooth);
+}
+
+.btn:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+/* Hero scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--color-text-tertiary);
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  animation: scroll-fade 2s ease-in-out infinite;
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, var(--color-text-tertiary), transparent);
+  border-radius: 1px;
+}
+
+@keyframes scroll-fade {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 1; transform: translateX(-50%) translateY(6px); }
+}
+
+/* ============================================================
+   Section Shared
+   ============================================================ */
+.section {
+  padding: 10rem clamp(2rem, 6vw, 6rem);
+}
+
+.section-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+}
+
+.section-title {
+  margin-bottom: 1.6rem;
+  color: var(--color-warm-dark);
+}
+
+.section-desc {
+  font-size: 1.7rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+.section-header {
+  margin-bottom: 6rem;
+}
+
+.section-header.centered {
+  text-align: center;
+}
+
+.section-header.centered .section-desc {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   Features Grid
+   ============================================================ */
+.features-bg {
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4rem;
+}
+
+.feature-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 3.6rem 3rem;
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-glow));
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: #d5cfc7;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(196, 112, 74, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  transition: background var(--transition-smooth);
+}
+
+.feature-card:hover .feature-icon {
+  background: rgba(196, 112, 74, 0.14);
+}
+
+.feature-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--color-accent);
+  fill: none;
+  stroke-width: 1.8;
+}
+
+.feature-card h3 {
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+  color: var(--color-warm-dark);
+}
+
+.feature-card p {
+  font-size: 1.45rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   Showcase Section (theme preview)
+   ============================================================ */
+.showcase {
+  position: relative;
+  overflow: hidden;
+}
+
+.showcase-visual {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.showcase-frame {
+  display: flex;
+  flex-direction: column;
+}
+
+.showcase-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  background: #f5f1eb;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.showcase-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.showcase-dot:nth-child(1) { background: #ec6a5e; }
+.showcase-dot:nth-child(2) { background: #f4bf4f; }
+.showcase-dot:nth-child(3) { background: #61c454; }
+
+.showcase-url {
+  flex: 1;
+  margin-left: 8px;
+  padding: 6px 12px;
+  background: var(--color-surface);
+  border-radius: 6px;
+  font-size: 1.2rem;
+  color: var(--color-text-tertiary);
+  font-family: var(--font-mono);
+}
+
+.showcase-body {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0;
+}
+
+.showcase-main {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.showcase-block {
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  height: 16px;
+  width: 100%;
+}
+
+.showcase-block.short { width: 60%; }
+.showcase-block.medium { width: 80%; }
+
+.showcase-card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 0.8rem;
+}
+
+.showcase-mini-card {
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  aspect-ratio: 4/3;
+}
+
+.showcase-sidebar {
+  padding: 3rem 3rem 3rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.showcase-sidebar-block {
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  height: 12px;
+  width: 100%;
+}
+
+.showcase-sidebar-block.short { width: 50%; }
+
+/* ============================================================
+   Settings Table
+   ============================================================ */
+.settings-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.settings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.45rem;
+}
+
+.settings-table thead {
+  background: var(--color-bg-alt);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.settings-table th {
+  padding: 1.6rem 2rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-warm-dark);
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.settings-table td {
+  padding: 1.4rem 2rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  vertical-align: top;
+}
+
+.settings-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.settings-table tbody tr {
+  transition: background var(--transition-smooth);
+}
+
+.settings-table tbody tr:hover {
+  background: rgba(196, 112, 74, 0.03);
+}
+
+.settings-table .setting-name {
+  font-weight: 600;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  white-space: nowrap;
+}
+
+.settings-table .setting-default {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  background: var(--color-code-bg);
+  border-radius: var(--radius-sm);
+  font-size: 1.25rem;
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+}
+
+.settings-table .setting-type {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.setting-type.select { background: rgba(100, 140, 200, 0.1); color: #4a7ab5; }
+.setting-type.color { background: rgba(180, 120, 180, 0.1); color: #8b5e9e; }
+.setting-type.text { background: rgba(100, 170, 130, 0.1); color: #4a8b62; }
+.setting-type.image { background: rgba(200, 150, 100, 0.1); color: #b07a3e; }
+
+/* ============================================================
+   CTA Section
+   ============================================================ */
+.cta-bg {
+  position: relative;
+  background: var(--color-warm-dark);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.cta-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 50%, rgba(212, 137, 95, 0.2) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 70% 50%, rgba(196, 112, 74, 0.1) 0%, transparent 50%);
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  color: #faf7f2;
+  margin-bottom: 1.6rem;
+}
+
+.cta-content p {
+  color: rgba(250, 247, 242, 0.7);
+  font-size: 1.7rem;
+  line-height: 1.8;
+  margin-bottom: 3.2rem;
+}
+
+.cta-content .btn-primary {
+  background: var(--color-accent-glow);
+  color: #fff;
+  font-size: 1.6rem;
+  padding: 1.4rem 3.2rem;
+}
+
+.cta-content .btn-primary:hover {
+  background: var(--color-accent);
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.footer {
+  padding: 4rem clamp(2rem, 6vw, 6rem);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+}
+
+.footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-warm-dark);
+}
+
+.footer-brand span {
+  color: var(--color-accent);
+}
+
+.footer-text {
+  font-size: 1.4rem;
+  color: var(--color-text-tertiary);
+}
+
+.footer-text a {
+  color: var(--color-text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-border);
+}
+
+.footer-text a:hover {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
+.footer-links {
+  display: flex;
+  gap: 2.4rem;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 1.4rem;
+  color: var(--color-text-secondary);
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+}
+
+/* ============================================================
+   Scroll Reveal Animation
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+              transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 992px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .showcase-body {
+    grid-template-columns: 1fr;
+  }
+
+  .showcase-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: rgba(250, 247, 242, 0.96);
+    backdrop-filter: blur(16px);
+    padding: 2rem;
+    border-bottom: 1px solid var(--color-border);
+    gap: 1.6rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 10rem 2rem 6rem;
+  }
+
+  .section {
+    padding: 6rem 2rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
+
+  .settings-table th,
+  .settings-table td {
+    padding: 1rem 1.2rem;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .showcase-main {
+    padding: 1.6rem;
+  }
+
+  .showcase-card-row {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">Em<span>ber</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#features">特性</a></li>
+    <li><a href="#preview">预览</a></li>
+    <li><a href="#settings">配置</a></li>
+    <li><a href="#cta" class="nav-cta">开始使用</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="菜单">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles">
+    <div class="hero-particle"></div>
+    <div class="hero-particle"></div>
+    <div class="hero-particle"></div>
+    <div class="hero-particle"></div>
+    <div class="hero-particle"></div>
+    <div class="hero-particle"></div>
+    <div class="hero-particle"></div>
+    <div class="hero-particle"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge reveal">
+      <span class="hero-badge-dot"></span>
+      Ghost 博客主题
+    </div>
+    <h1 class="reveal reveal-delay-1">
+      <span class="accent">Ember</span> —— 为内容创作者而生
+    </h1>
+    <p class="hero-desc reveal reveal-delay-2">
+      一款简洁、现代、高度可定制的 Ghost 主题。
+      内置文字特效动画、CJK 排版优化、自动暗色模式，让你的文字在余温中发光。
+    </p>
+    <div class="hero-actions reveal reveal-delay-3">
+      <a href="https://yinguobing.com" class="btn btn-primary" target="_blank" rel="noopener">
+        在线演示
+        <span class="btn-arrow">&rarr;</span>
+      </a>
+      <a href="https://github.com/yinguobing/Ember" class="btn btn-outline" target="_blank" rel="noopener">
+        GitHub
+        <span class="btn-arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>向下滚动</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section features-bg" id="features">
+  <div class="section-inner">
+    <div class="section-header centered">
+      <span class="section-label reveal">核心特性</span>
+      <h2 class="section-title reveal reveal-delay-1">为内容而设计，为阅读而优化</h2>
+      <p class="section-desc reveal reveal-delay-2">
+        Ember 不止是一个主题，它是你文字的家。每一个细节都经过打磨，只为呈现最好的阅读体验。
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <!-- Feature 1: Hero Animation -->
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"/>
+            <circle cx="6" cy="6" r="1.5"/>
+            <circle cx="18" cy="8" r="1"/>
+            <circle cx="8" cy="16" r="1.2"/>
+            <circle cx="16" cy="18" r="1.3"/>
+            <circle cx="4" cy="12" r="0.8"/>
+            <circle cx="20" cy="14" r="0.9"/>
+          </svg>
+        </div>
+        <h3>动态渐变背景</h3>
+        <p>首页英雄区域采用浮动渐变色块动画，亦可切换为站点封面图背景。支持文字逐字切换特效，可自定义短语与动画速度。</p>
+      </div>
+
+      <!-- Feature 2: Dark Mode -->
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </div>
+        <h3>自动暗色模式</h3>
+        <p>根据站点背景色的亮度自动切换明暗主题。深色背景下文字与卡片自动适配，无需手动切换，无需媒体查询。</p>
+      </div>
+
+      <!-- Feature 3: CJK Typography -->
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="4" rx="1"/>
+            <rect x="3" y="10" width="14" height="4" rx="1"/>
+            <rect x="3" y="16" width="16" height="4" rx="1"/>
+          </svg>
+        </div>
+        <h3>CJK 排版优化</h3>
+        <p>自动检测中文语言环境，加载 CJK 字体栈，调整字间距与行高，段落两端对齐。让中文阅读舒适自然，不再水土不服。</p>
+      </div>
+
+      <!-- Feature 4: Featured Slider -->
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <polyline points="8,12 12,8 16,12"/>
+            <line x1="12" y1="8" x2="12" y2="16"/>
+          </svg>
+        </div>
+        <h3>精选内容轮播</h3>
+        <p>深色主题的精选文章轮播组件，支持自动播放与悬停暂停。左右双栏布局同时展示封面图与文字内容，导航控制直观流畅。</p>
+      </div>
+
+      <!-- Feature 5: Responsive -->
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="2" width="18" height="15" rx="2"/>
+            <rect x="7" y="19" width="10" height="2" rx="1"/>
+            <rect x="10" y="17" width="4" height="2"/>
+          </svg>
+        </div>
+        <h3>全响应式设计</h3>
+        <p>从手机到宽屏显示器，布局自适应调整。首页三栏网格在小屏自动折叠为单栏，卡片图片使用 srcset 按需加载，兼顾速度与体验。</p>
+      </div>
+
+      <!-- Feature 6: Custom Templates -->
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="4" y="2" width="7" height="9" rx="1"/>
+            <rect x="13" y="2" width="7" height="5" rx="1"/>
+            <rect x="13" y="9" width="7" height="5" rx="1"/>
+            <rect x="4" y="13" width="16" height="9" rx="1"/>
+          </svg>
+        </div>
+        <h3>自定义文章模板</h3>
+        <p>内置全幅与宽幅封面图文章模板，满足不同视觉需求。支持热门标签云、相关文章推荐、社交分享（含微信二维码）等丰富组件。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Preview / Showcase -->
+<section class="section" id="preview">
+  <div class="section-inner">
+    <div class="section-header centered">
+      <span class="section-label reveal">主题预览</span>
+      <h2 class="section-title reveal reveal-delay-1">简洁而不简单</h2>
+      <p class="section-desc reveal reveal-delay-2">
+        这是 Ember 在桌面端的首页布局示意。三栏网格、精选轮播、浮动渐变背景，每个元素都为内容服务。
+      </p>
+    </div>
+
+    <div class="showcase-visual reveal reveal-delay-3">
+      <div class="showcase-frame">
+        <div class="showcase-toolbar">
+          <span class="showcase-dot"></span>
+          <span class="showcase-dot"></span>
+          <span class="showcase-dot"></span>
+          <span class="showcase-url">yinguobing.com</span>
+        </div>
+        <div class="showcase-body">
+          <div class="showcase-main">
+            <div class="showcase-block"></div>
+            <div class="showcase-block short"></div>
+            <div class="showcase-block medium"></div>
+            <div class="showcase-card-row">
+              <div class="showcase-mini-card"></div>
+              <div class="showcase-mini-card"></div>
+            </div>
+            <div class="showcase-block medium"></div>
+            <div class="showcase-block short"></div>
+          </div>
+          <div class="showcase-sidebar">
+            <div class="showcase-sidebar-block short"></div>
+            <div class="showcase-sidebar-block"></div>
+            <div class="showcase-sidebar-block"></div>
+            <div class="showcase-sidebar-block short"></div>
+            <div class="showcase-sidebar-block"></div>
+            <div class="showcase-sidebar-block short"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Settings -->
+<section class="section features-bg" id="settings">
+  <div class="section-inner">
+    <div class="section-header centered">
+      <span class="section-label reveal">主题配置</span>
+      <h2 class="section-title reveal reveal-delay-1">灵活可控，随心定制</h2>
+      <p class="section-desc reveal reveal-delay-2">
+        所有设置项均可在 Ghost 管理后台直接调整，无需修改代码。
+      </p>
+    </div>
+
+    <div class="settings-table-wrap reveal reveal-delay-3">
+      <table class="settings-table">
+        <thead>
+          <tr>
+            <th>设置项</th>
+            <th>说明</th>
+            <th>类型</th>
+            <th>默认值</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="setting-name">navigation_layout</span></td>
+            <td>导航栏布局，可选 Logo 居左或居中</td>
+            <td><span class="setting-type select">选择</span></td>
+            <td><span class="setting-default">Logo on the left</span></td>
+          </tr>
+          <tr>
+            <td><span class="setting-name">site_background_color</span></td>
+            <td>站点背景色，同时决定明暗模式切换</td>
+            <td><span class="setting-type color">颜色</span></td>
+            <td><span class="setting-default">#ffffff</span></td>
+          </tr>
+          <tr>
+            <td><span class="setting-name">title_font</span></td>
+            <td>标题字体，可选现代无衬线体或优雅衬线体</td>
+            <td><span class="setting-type select">选择</span></td>
+            <td><span class="setting-default">Modern sans-serif</span></td>
+          </tr>
+          <tr>
+            <td><span class="setting-name">body_font</span></td>
+            <td>正文字体，可选现代无衬线体或优雅衬线体</td>
+            <td><span class="setting-type select">选择</span></td>
+            <td><span class="setting-default">Elegant serif</span></td>
+          </tr>
+          <tr>
+            <td><span class="setting-name">hero_background_type</span></td>
+            <td>首页英雄区域背景类型：动态渐变或站点封面图</td>
+            <td><span class="setting-type select">选择</span></td>
+            <td><span class="setting-default">Animated Blobs</span></td>
+          </tr>
+          <tr>
+            <td><span class="setting-name">hero_scramble_phrases</span></td>
+            <td>英雄区域文字特效的展示短语，逗号分隔</td>
+            <td><span class="setting-type text">文本</span></td>
+            <td><span class="setting-default">探索未知,发现美好,创造价值,分享见解</span></td>
+          </tr>
+          <tr>
+            <td><span class="setting-name">hero_scramble_speed</span></td>
+            <td>文字特效动画速度：快速、正常或慢速</td>
+            <td><span class="setting-type select">选择</span></td>
+            <td><span class="setting-default">Normal</span></td>
+          </tr>
+          <tr>
+            <td><span class="setting-name">hero_scramble_horizontal</span></td>
+            <td>文字特效水平位置，百分比 (0-100)</td>
+            <td><span class="setting-type text">文本</span></td>
+            <td><span class="setting-default">50</span></td>
+          </tr>
+          <tr>
+            <td><span class="setting-name">hero_scramble_vertical</span></td>
+            <td>文字特效垂直位置，百分比 (0-100)</td>
+            <td><span class="setting-type text">文本</span></td>
+            <td><span class="setting-default">0</span></td>
+          </tr>
+          <tr>
+            <td><span class="setting-name">tag_slugs_for_popular_tags</span></td>
+            <td>首页展示的热门标签别名，逗号分隔</td>
+            <td><span class="setting-type text">文本</span></td>
+            <td><span class="setting-default">（自动按文章数量选取前 10 个）</span></td>
+          </tr>
+          <tr>
+            <td><span class="setting-name">footer_text</span></td>
+            <td>页脚自定义文字，支持 HTML</td>
+            <td><span class="setting-type text">文本</span></td>
+            <td><span class="setting-default">（留空则使用默认版权信息）</span></td>
+          </tr>
+          <tr>
+            <td><span class="setting-name">white_publication_logo_for_transparent_header</span></td>
+            <td>用于透明或深色导航栏的浅色 Logo</td>
+            <td><span class="setting-type image">图片</span></td>
+            <td><span class="setting-default">（可选上传）</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-bg" id="cta">
+  <div class="section-inner">
+    <div class="cta-content reveal">
+      <h2>准备好开始了吗？</h2>
+      <p>
+        访问在线演示站点，亲身体验 Ember 主题的完整效果。
+        开源免费，MIT 协议授权。
+      </p>
+      <a href="https://yinguobing.com" class="btn btn-primary" target="_blank" rel="noopener">
+        访问演示站点
+        <span class="btn-arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Em<span>ber</span></div>
+    <p class="footer-text">
+      由 <a href="https://yinguobing.com" target="_blank" rel="noopener">yinguobing</a> 设计与开发，
+      基于 Ghost Foundation 的 <a href="https://github.com/TryGhost/Headline" target="_blank" rel="noopener">Headline</a> 主题构建。
+      <a href="https://github.com/yinguobing/Ember/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a> 协议开源。
+    </p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/yinguobing/Ember" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://yinguobing.com" target="_blank" rel="noopener">演示站点</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   Scroll-triggered reveal animation
+   ============================================================ */
+(function() {
+  var reveals = document.querySelectorAll('.reveal');
+  var windowHeight = window.innerHeight;
+
+  function onScroll() {
+    var scrollY = window.pageYOffset;
+    for (var i = 0; i < reveals.length; i++) {
+      var el = reveals[i];
+      var top = el.getBoundingClientRect().top;
+      if (top < windowHeight - 80) {
+        el.classList.add('visible');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', function() {
+    windowHeight = window.innerHeight;
+  });
+
+  // Trigger once on load
+  onScroll();
+})();
+
+/* ============================================================
+   Navigation scroll effect
+   ============================================================ */
+(function() {
+  var nav = document.getElementById('nav');
+  function onScroll() {
+    if (window.pageYOffset > 40) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+/* ============================================================
+   Mobile nav toggle
+   ============================================================ */
+(function() {
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+
+  toggle.addEventListener('click', function() {
+    links.classList.toggle('open');
+  });
+
+  // Close on link click
+  var items = links.querySelectorAll('a');
+  for (var i = 0; i < items.length; i++) {
+    items[i].addEventListener('click', function() {
+      links.classList.remove('open');
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
