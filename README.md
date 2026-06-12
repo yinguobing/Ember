@@ -1,18 +1,15 @@
 # Ember
 
-Ember is a clean, modern [Ghost](https://ghost.org/) theme designed for content-focused publications. Built on the excellent [Headline](https://github.com/TryGhost/Headline) theme by the Ghost Foundation and extensively customized for personal blogging.
+Ember is a clean, modern [Ghost](https://ghost.org/) theme designed for content-focused publications. Extensively customized for personal blogging with a custom homepage layout, hero animations, and CJK typography support.
 
 **Demo:** https://yinguobing.com
-
-## Credits
-
-This theme is based on [Headline](https://github.com/TryGhost/Headline) by Ghost Foundation. We've preserved the solid foundation of Headline while adding a custom homepage layout, hero animations, and CJK typography support.
 
 ## Features
 
 - **Hero Section** — Animated blob gradient background with configurable text scramble animation. Supports Publication Cover image as an alternative background
 - **Card Layout** — Posts display in clean cards with responsive images (srcset), tag badges, and metadata
 - **Featured Content Slider** — Dark-themed carousel for highlighted posts with autoplay and navigation controls
+- **Featured Page** — Dedicated `/featured/` page for browsing all featured posts, powered by Ghost's native `featured:true` flag
 - **Homepage Grid** — "What's New" three-column layout (1 large + 4 small cards) plus an 8-card "More Posts" grid
 - **Popular Tags Cloud** — Visual tag display with background images and dark overlays
 - **CJK Typography** — Automatic Chinese/Japanese/Korean font stack and spacing adjustments when `lang="zh"`
@@ -59,7 +56,7 @@ The following settings are available in Ghost Admin → Design:
 
 ## Original Theme
 
-Ember is built upon [Headline](https://github.com/TryGhost/Headline), a theme designed for local news and publications by the Ghost Foundation.
+Ember is built upon an [original theme](https://github.com/TryGhost/Headline) by the Ghost Foundation.
 
 ## License
 
