@@ -1,63 +1,63 @@
 # Ember
 
-Ember is a clean, modern [Ghost](https://ghost.org/) theme designed for content-focused publications. Extensively customized for personal blogging with a custom homepage layout, hero animations, and CJK typography support.
+Ember 是一款简洁现代的 [Ghost](https://ghost.org/) 主题，专为内容型出版物设计。在 Ghost 基金会原始主题的基础上进行了大量定制，增加了自定义首页布局、Hero 动画和 CJK 排版支持。
 
-**Demo:** https://yinguobing.com
+**演示站点：** https://yinguobing.com
 
-## Features
+## 功能特性
 
-- **Hero Section** — Animated blob gradient background with configurable text scramble animation. Supports Publication Cover image as an alternative background
-- **Card Layout** — Posts display in clean cards with responsive images (srcset), tag badges, and metadata
-- **Featured Content Slider** — Dark-themed carousel for highlighted posts with autoplay and navigation controls
-- **Featured Page** — Dedicated `/featured/` page for browsing all featured posts, powered by Ghost's native `featured:true` flag
-- **Homepage Grid** — "What's New" three-column layout (1 large + 4 small cards) plus an 8-card "More Posts" grid
-- **Popular Tags Cloud** — Visual tag display with background images and dark overlays
-- **CJK Typography** — Automatic Chinese/Japanese/Korean font stack and spacing adjustments when `lang="zh"`
-- **Dark Mode** — Automatic light/dark adaptation via CSS custom properties based on background color luminance
+- **Hero 区域** — 动画渐变背景，可配置文字乱序特效。支持使用站点封面图作为替代背景
+- **卡片布局** — 文章以清晰卡片展示，包含响应式图片（srcset）、标签徽章和元数据
+- **精选内容轮播** — 深色主题的精选文章轮播，支持自动播放和导航控制
+- **精选文章页面** — 独立的 `/featured/` 页面浏览全部精选文章，基于 Ghost 原生 `featured:true` 标记
+- **首页网格** — "近期发表"三栏布局（1 大 + 4 小卡片），以及 8 卡片的"更早文章"网格
+- **热门标签云** — 带背景图片和深色遮罩的标签展示
+- **CJK 排版** — `lang="zh"` 时自动应用中文字体栈和间距调整
+- **深色模式** — 基于背景色亮度通过 CSS 自定义属性自动适配明暗主题
 
-## Installation
+## 安装
 
-1. Download the [latest release](https://github.com/yinguobing/Ember/releases) or clone this repository
-2. Run `yarn zip` to create the distribution file
-3. Upload `dist/ember.zip` to Ghost Admin → Design → Change theme
+1. 下载[最新版本](https://github.com/yinguobing/Ember/releases)或克隆本仓库
+2. 运行 `yarn zip` 生成分发包
+3. 在 Ghost 后台 Design → Change theme 上传 `dist/ember.zip`
 
-## Development
+## 开发
 
-This theme uses Gulp/PostCSS for building. You'll need [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/) installed.
+本主题使用 Gulp/PostCSS 构建，需要安装 [Node.js](https://nodejs.org/) 和 [Yarn](https://yarnpkg.com/)。
 
 ```bash
-# Install dependencies
+# 安装依赖
 yarn
 
-# Build and watch for changes
+# 构建并监听文件变化
 yarn dev
 
-# Create distribution zip
+# 创建发布包
 yarn zip
 ```
 
-Edit files in `/assets/css/` — they will be compiled to `/assets/built/` automatically.
+编辑 `/assets/css/` 中的文件，会自动编译到 `/assets/built/`。
 
-## Customization
+## 自定义设置
 
-The following settings are available in Ghost Admin → Design:
+在 Ghost 后台 Design 中可配置以下选项：
 
-| Setting | Description |
-|---------|-------------|
-| **Navigation Layout** | Logo position — left or middle |
-| **Site Background Color** | Page background color, also drives light/dark mode |
-| **Title / Body Font** | Modern sans-serif (Inter) or elegant serif (Lora) |
-| **Hero Background Type** | Animated blobs or Publication Cover image |
-| **Hero Scramble Phrases** | Comma-separated text phrases for the hero animation |
-| **Hero Scramble Speed** | Fast, Normal, or Slow |
-| **Hero Horizontal / Vertical** | Percentage-based text position (0–100) |
-| **Footer Text** | Custom copyright text |
-| **Popular Tags** | Comma-separated tag slugs to feature on homepage |
+| 设置 | 说明 |
+|------|------|
+| **导航布局** | Logo 居左或居中 |
+| **站点背景色** | 页面背景色，同时影响明暗模式 |
+| **标题 / 正文字体** | 现代无衬线（Inter）或优雅衬线（Lora） |
+| **Hero 背景类型** | 动画渐变或站点封面图 |
+| **Hero 乱序短语** | 逗号分隔的文字短语，用于 Hero 动画 |
+| **Hero 乱序速度** | 快、正常、慢 |
+| **Hero 水平/垂直位置** | 文字位置百分比（0–100） |
+| **页脚文字** | 自定义版权信息 |
+| **热门标签** | 逗号分隔的标签 slug，用于首页展示 |
 
-## Original Theme
+## 原始主题
 
-Ember is built upon an [original theme](https://github.com/TryGhost/Headline) by the Ghost Foundation.
+Ember 基于 Ghost 基金会的[原始主题](https://github.com/TryGhost/Headline)构建。
 
-## License
+## 许可证
 
-Copyright (c) 2013-2026 Ghost Foundation - Released under the [MIT license](LICENSE).
+Copyright (c) 2013-2026 Ghost Foundation - 基于 [MIT license](LICENSE) 发布。
