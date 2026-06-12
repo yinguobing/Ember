@@ -1,4 +1,4 @@
-<article class="gh-card {{post_class}}{{#match has_large_post "!=" false}}{{#has index="0"}} large{{/has}}{{/match}}">
+<article class="gh-card">
     <a class="gh-card-link" href="{{url}}">
         {{#if feature_image}}
             <figure class="gh-card-image">
@@ -21,13 +21,7 @@
             </header>
 
             {{#if excerpt}}
-                {{#is "home"}}
-                    {{#has index="0"}}
-                        <div class="gh-card-excerpt">{{excerpt}}</div>
-                    {{/has}}
-                {{else}}
-                    <div class="gh-card-excerpt">{{excerpt}}</div>
-                {{/is}}
+                <div class="gh-card-excerpt">{{excerpt}}</div>
             {{/if}}
 
             <footer class="gh-card-footer">

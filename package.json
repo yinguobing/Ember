@@ -8,16 +8,15 @@
     },
     "license": "MIT",
     "author": {
-        "name": "Ghost Foundation",
-        "email": "hello@ghost.org",
-        "url": "https://ghost.org"
+        "name": "yinguobing",
+        "email": "yinguobing@gmail.com",
+        "url": "https://yinguobing.com"
     },
     "keywords": [
         "ghost",
         "theme",
         "ghost-theme"
     ],
-    "docs": "https://headline.ghost.io/about/",
     "config": {
         "posts_per_page": 13,
         "image_sizes": {
