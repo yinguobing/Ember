@@ -2113,6 +2113,27 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     z-index: 10;
 }
 
+/* Featured Post Badge
+/* ---------------------------------------------------------- */
+.gh-card-large.featured .gh-card-image-holder::after,
+.gh-card-small.featured .gh-card-small-image::after,
+.gh-card-more.featured .gh-card-more-image::after {
+    content: "★";
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    color: var(--ghost-accent-color, #ffc107);
+    font-size: 1.2rem;
+    border-radius: 4px;
+    z-index: 10;
+}
+
 .gh-card-small-image,
 .gh-card-more-image,
 .gh-card-image-holder {
