@@ -197,3 +197,40 @@
     // Start animation
     next();
 })();
+
+// Load More — for custom-featured page
+(function () {
+    var PAGE_SIZE = 12;
+
+    var feed = document.querySelector('.gh-feed[data-loadmore]');
+    if (!feed) return;
+
+    var cards = feed.querySelectorAll('.gh-card-small');
+    var button = document.querySelector('.gh-loadmore');
+    if (!button) return;
+
+    // If all cards fit in one page, hide the button
+    if (cards.length <= PAGE_SIZE) {
+        button.setAttribute('hidden', '');
+        return;
+    }
+
+    var visibleCount = PAGE_SIZE;
+
+    // Hide cards beyond the first page
+    for (var i = PAGE_SIZE; i < cards.length; i++) {
+        cards[i].setAttribute('hidden', '');
+    }
+
+    button.addEventListener('click', function () {
+        var nextBatch = visibleCount + PAGE_SIZE;
+        for (var i = visibleCount; i < nextBatch && i < cards.length; i++) {
+            cards[i].removeAttribute('hidden');
+        }
+        visibleCount = nextBatch;
+
+        if (visibleCount >= cards.length) {
+            button.setAttribute('hidden', '');
+        }
+    });
+})();

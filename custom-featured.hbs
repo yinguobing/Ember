@@ -45,12 +45,15 @@
                 </section>
             {{/unless}}
 
-            {{#get "posts" filter="featured:true" limit="12" include="authors,tags" order="published_at desc"}}
+            {{#get "posts" filter="featured:true" limit="all" include="authors,tags" order="published_at desc"}}
                 {{#if posts}}
-                    <div class="gh-feed gh-post-grid">
+                    <div class="gh-feed gh-post-grid" data-loadmore>
                         {{#foreach posts}}
                             {{> "loop-card-small"}}
                         {{/foreach}}
+                    </div>
+                    <div class="gh-loadmore-wrapper">
+                        <button class="gh-loadmore gh-btn">{{t "Load more"}}</button>
                     </div>
                 {{else}}
                     <p class="gh-empty-message">暂无精选文章</p>

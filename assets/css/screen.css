@@ -2098,6 +2098,34 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     }
 }
 
+/* Load More Button
+/* ---------------------------------------------------------- */
+.gh-loadmore-wrapper {
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 40px;
+}
+
+.gh-loadmore {
+    display: inline-block;
+    padding: 10px 32px;
+    border: 1px solid var(--color-light-gray);
+    border-radius: 4px;
+    background: var(--color-white);
+    color: var(--color-primary-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.gh-loadmore:hover {
+    background: var(--color-light-gray);
+}
+
+.gh-loadmore[hidden] {
+    display: none;
+}
+
 /* Premium Badge (Paid Post Star)
 /* ---------------------------------------------------------- */
 .gh-card-premium-badge {
