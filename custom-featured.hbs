@@ -35,6 +35,16 @@
 
     <main class="gh-main gh-outer">
         <div class="gh-inner">
+            {{!-- 页面标题（如果没有 feature image） --}}
+            {{#unless feature_image}}
+                <section class="gh-pagehead">
+                    <h1 class="gh-pagehead-title">{{title}}</h1>
+                    {{#if custom_excerpt}}
+                        <div class="gh-pagehead-description">{{custom_excerpt}}</div>
+                    {{/if}}
+                </section>
+            {{/unless}}
+
             {{#get "posts" filter="featured:true" limit="12" include="authors,tags" order="published_at desc"}}
                 {{#if posts}}
                     <div class="gh-feed gh-post-grid">
@@ -49,3 +59,5 @@
         </div>
     </main>
 {{/post}}
+
+{{#contentFor "body_class"}}{{#if post.feature_image}} is-head-transparent{{/if}}{{/contentFor}}

@@ -381,6 +381,10 @@ body:not(.home-template) .gh-related-posts-grid .gh-card {
     background-color: transparent;
 }
 
+.page-template .gh-cover {
+    margin-bottom: 60px;
+}
+
 .post-template .gh-cover::before {
     position: absolute;
     inset: 0;
