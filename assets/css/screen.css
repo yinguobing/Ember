@@ -2493,11 +2493,13 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 }
 
 .gh-consulting-cta-btn-primary {
-    background: var(--color-darker-gray);
-    color: var(--color-white);
-    border-color: var(--color-darker-gray);
+    background: #1a1a1a;
+    color: #ffffff;
+    border-color: #1a1a1a;
 }
 
 .gh-consulting-cta-btn-primary:hover {
-    opacity: 0.85;
+    background: #333333;
+    border-color: #333333;
+    color: #ffffff;
 }
