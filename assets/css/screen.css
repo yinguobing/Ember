@@ -2492,7 +2492,15 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     opacity: 0.9;
 }
 
+.gh-consulting-qr {
+    position: relative;
+    display: inline-block;
+}
+
 .gh-consulting-cta-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     background: transparent;
     color: var(--color-darker-gray);
     border-color: var(--color-light-gray);
@@ -2507,6 +2515,7 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 .gh-consulting-cta-btn-primary .icon {
     width: 18px;
     height: 18px;
+    flex-shrink: 0;
 }
 
 .gh-consulting-qr {
@@ -2516,15 +2525,29 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 
 .gh-consulting-qr-img {
     position: absolute;
+    bottom: calc(100% + 18px);
     left: 50%;
     transform: translateX(-50%);
-    display: none;
+    width: 240px;
+    height: auto;
     border-radius: 8px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
-    margin-top: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
     z-index: 10;
 }
 
+.gh-consulting-qr-img::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: #fff;
+}
+
 .gh-consulting-qr:hover .gh-consulting-qr-img {
-    display: block;
+    opacity: 1;
 }
