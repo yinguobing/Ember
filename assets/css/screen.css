@@ -2495,13 +2495,18 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 .gh-consulting-cta-btn-primary {
     background: transparent;
     color: #07C160;
-    border-color: #07C160;
+    border-color: transparent;
 }
 
 .gh-consulting-cta-btn-primary:hover {
     background: rgba(7, 193, 96, 0.06);
-    border-color: #06AD56;
+    border-color: #07C160;
     color: #06AD56;
+}
+
+.gh-consulting-cta-btn-primary .icon {
+    width: 18px;
+    height: 18px;
 }
 
 .gh-consulting-qr {
@@ -2519,10 +2524,6 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-}
-
-.gh-consulting-wechat-icon {
-    flex-shrink: 0;
 }
 
 .gh-consulting-qr summary::-webkit-details-marker {
