@@ -2514,30 +2514,17 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     display: inline-block;
 }
 
-.gh-consulting-qr summary {
-    cursor: pointer;
-    list-style: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.gh-consulting-qr summary::-webkit-details-marker {
-    display: none;
-}
-
-.gh-consulting-qr summary::marker {
-    display: none;
-    content: "";
-}
-
 .gh-consulting-qr-img {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    display: block;
+    display: none;
     border-radius: 8px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
     margin-top: 12px;
     z-index: 10;
+}
+
+.gh-consulting-qr:hover .gh-consulting-qr-img {
+    display: block;
 }
