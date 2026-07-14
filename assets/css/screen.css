@@ -2514,10 +2514,6 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     display: inline-block;
 }
 
-.gh-consulting-qr[open] > summary {
-    margin-bottom: 16px;
-}
-
 .gh-consulting-qr summary {
     cursor: pointer;
     list-style: none;
@@ -2536,8 +2532,12 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 }
 
 .gh-consulting-qr-img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     display: block;
     border-radius: 8px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
-    margin-bottom: 4px;
+    margin-top: 12px;
+    z-index: 10;
 }
