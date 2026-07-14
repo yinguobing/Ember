@@ -2503,3 +2503,33 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     border-color: #333333;
     color: #ffffff;
 }
+
+.gh-consulting-qr {
+    position: relative;
+    display: inline-block;
+}
+
+.gh-consulting-qr[open] > summary {
+    margin-bottom: 16px;
+}
+
+.gh-consulting-qr summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.gh-consulting-qr summary::-webkit-details-marker {
+    display: none;
+}
+
+.gh-consulting-qr summary::marker {
+    display: none;
+    content: "";
+}
+
+.gh-consulting-qr-img {
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    margin-bottom: 4px;
+}
