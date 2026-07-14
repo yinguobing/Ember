@@ -2494,14 +2494,14 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 
 .gh-consulting-cta-btn-primary {
     background: transparent;
-    color: #07C160;
-    border-color: #07C160;
+    color: var(--color-darker-gray);
+    border-color: var(--color-light-gray);
 }
 
 .gh-consulting-cta-btn-primary:hover {
     background: rgba(7, 193, 96, 0.06);
-    border-color: #06AD56;
-    color: #06AD56;
+    border-color: #07C160;
+    color: #07C160;
 }
 
 .gh-consulting-cta-btn-primary .icon {
