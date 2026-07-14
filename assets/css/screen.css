@@ -2529,6 +2529,7 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     left: 50%;
     transform: translateX(-50%);
     width: 300px;
+    max-width: none;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
