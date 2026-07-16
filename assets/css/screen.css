@@ -2355,7 +2355,8 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 :lang(zh) .gh-card-small-title,
 :lang(zh) .gh-card-more-title,
 :lang(zh) .gh-card-large .gh-card-title,
-:lang(zh) .gh-featured-slide-title {
+:lang(zh) .gh-featured-slide-title,
+:lang(zh) .gh-content table:not(.gist table) th {
     letter-spacing: normal;
 }
 
@@ -2380,6 +2381,11 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 :lang(zh) .gh-hero-title-scramble,
 :lang(zh) .gh-hero-title-flip {
     line-height: 1.5;
+}
+
+/* ---- Line-height: body text (CJK needs 1.7–1.8 for comfortable reading) ---- */
+:lang(zh) .gh-content {
+    line-height: 1.75;
 }
 
 /* ---- Line-height: excerpts and body text ---- */
@@ -2414,6 +2420,7 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 
 :lang(zh) figcaption {
     font-size: 1.4rem;
+    line-height: 1.6;
 }
 
 :lang(zh) .gh-content table:not(.gist table) th {
@@ -2430,6 +2437,18 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     text-transform: none;
 }
 
+/* ---- Font-style: prevent synthesized oblique on CJK characters ---- */
+/* CJK has no native italic; browsers synthesize a slant that distorts character structure.
+   Use text-emphasis (着重号) as the CJK equivalent of italic emphasis. */
+:lang(zh) em,
+:lang(zh) i {
+    font-style: normal;
+    text-emphasis: filled circle;
+    -webkit-text-emphasis: filled circle;
+    text-emphasis-color: var(--ghost-accent-color);
+    -webkit-text-emphasis-color: var(--ghost-accent-color);
+}
+
 /* ---- Text-align: justify body paragraphs (CJK standard) ---- */
 :lang(zh) .gh-content > p,
 :lang(zh) .gh-content > blockquote,
@@ -2437,6 +2456,7 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 :lang(zh) .gh-content > ol,
 :lang(zh) .gh-content > dl {
     text-align: justify;
+    text-justify: inter-character;
 }
 
 /* ---- Consulting CTA ---- */
