@@ -1,17 +1,36 @@
 <section class="gh-consulting-cta gh-canvas">
     <hr class="gh-consulting-cta-divider">
-    <h3 class="gh-consulting-cta-title">{{t "有技术问题需要解决？"}}</h3>
+    <h3 class="gh-consulting-cta-title">{{t "有AI相关的想法，但不知道怎么落地？"}}</h3>
     <p class="gh-consulting-cta-desc">
-        {{t "论文复现、模型部署、代码审查 —— 把问题带来，我帮你走通整条链路。"}}
+        {{t "我是国冰，独立AI开发者。十多年技术一线——半导体显示、智慧城市到自动驾驶；现在一个人+AI，接AI落地项目，从梳理需求到系统落地，陪你走通。"}}
     </p>
     <div class="gh-consulting-cta-actions">
         <span class="gh-consulting-qr">
-            <span class="gh-consulting-cta-btn gh-consulting-cta-btn-primary" role="button">
+            <span class="gh-consulting-cta-btn gh-consulting-cta-btn-primary" role="button" tabindex="0">
                 {{> "icons/wechat"}}
                 {{t "微信聊聊"}}
             </span>
             <img src="https://yinguobing.com/assets/wechat.webp" alt="{{t "微信二维码"}}" class="gh-consulting-qr-img" loading="lazy">
         </span>
-        <a href="https://yinguobing.com" class="gh-consulting-cta-btn">{{t "关于我"}}</a>
+        <a href="https://yinguobing.com" class="gh-consulting-cta-btn">{{t "看我能做什么"}}</a>
     </div>
 </section>
+<script>
+(function () {
+    var qr = document.querySelector(".gh-consulting-cta .gh-consulting-qr");
+    if (!qr) { return; }
+    var btn = qr.querySelector(".gh-consulting-cta-btn-primary");
+    if (!btn) { return; }
+    btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        var isOpen = qr.classList.toggle("is-open");
+        document.body.classList.toggle("qr-open", isOpen);
+    });
+    document.addEventListener("click", function (e) {
+        if (!qr.contains(e.target)) {
+            qr.classList.remove("is-open");
+            document.body.classList.remove("qr-open");
+        }
+    });
+})();
+</script>

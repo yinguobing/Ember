@@ -2572,3 +2572,33 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
 .gh-consulting-qr:hover .gh-consulting-qr-img {
     opacity: 1;
 }
+
+/* ===== 移动端微信二维码点击显示 + 居中弹层（2026-09-07）===== */
+.gh-consulting-qr.is-open .gh-consulting-qr-img,
+.gh-consulting-qr:focus-within .gh-consulting-qr-img {
+    opacity: 1;
+}
+
+@media (max-width: 640px) {
+    .gh-consulting-qr-img,
+    .gh-consulting-qr.is-open .gh-consulting-qr-img {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        bottom: auto;
+        transform: translate(-50%, -50%);
+        width: min(260px, 78vw);
+        max-width: none;
+        opacity: 0;
+        pointer-events: auto;
+    }
+    .gh-consulting-qr-img::after {
+        display: none;
+    }
+    .gh-consulting-qr.is-open .gh-consulting-qr-img {
+        opacity: 1;
+    }
+    body.qr-open {
+        overflow: hidden;
+    }
+}
