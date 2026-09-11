@@ -60,8 +60,17 @@
                 <button class="gh-burger" aria-label="{{t "Toggle menu"}}"></button>
             </div>
 
+            {{!-- 主菜单硬编码为「根相对路径」：
+                 - Ghost 的 {{navigation}} 只接受绝对 URL，且相对路径会被拼到站点
+                   URL（/blog/）下面，到不了站根，故不适用。
+                 - 根相对路径从域名根算起，.com/blog/ 与 .cn/blog/ 各自闭环，
+                   换域名无需改主题。改菜单请直接改这里。 --}}
             <nav class="gh-head-menu">
-                {{navigation}}
+                <ul class="nav">
+                    <li class="nav-aishi-jian"><a href="/ai/">AI实践</a></li>
+                    <li class="nav-aike-cheng"><a href="/course/">AI课程</a></li>
+                    <li class="nav-guan-yu-wo"><a href="/about/">关于我</a></li>
+                </ul>
             </nav>
 
             <div class="gh-head-actions">
