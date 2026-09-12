@@ -13,8 +13,18 @@
     </title>
     {{!-- 2026-09-11: 站点配了 admin__url，Ghost 的 {{asset}} 会返回绝对 URL（站点域名
          .com），.cn 页面的 CSS/字体就会跑去境外机器取。这里改成根相对路径，两个域名
-         各自就近加载。改过 assets/built 里的文件后，手动把 ?v= 换成新的日期。 --}}
-    <link rel="stylesheet" href="/blog/assets/built/screen.css?v=20260911">
+         各自就近加载。 --}}
+    {{!-- ⚠️ 改过 assets/built 里的文件后，?v= 必须跟着换，否则 Cloudflare 按 URL 命中旧缓存：
+         2026-09-12 改了 screen.css（档位徽章）却没换 v，.com 上 CF 一直发 7 月的旧 CSS
+         （cf-cache-status: HIT, age 12h），表现为「HTML 变了、样式不生效」。
+         排查口诀：换个 ?v= 立刻拿到新文件 → 就是缓存键问题，不是部署没上去。
+         现用「内容哈希」而非日期，免得忘记手改：
+             sha256sum assets/built/screen.css  | cut -c1-8
+             sha256sum assets/built/main.min.js | cut -c1-8
+         CF 遵从 query string，换 v 能同时穿透 CF 与浏览器缓存。
+         注：此处刻意不用 {{asset}} 助手，gscan 会报「Assets such as CSS & JS must use
+         the {{asset}} helper」——这是已知的、故意的取舍，不要当成疏漏去「修」。 --}}
+    <link rel="stylesheet" href="/blog/assets/built/screen.css?v=477d5882">
 
     <style>
         :root {
@@ -110,7 +120,7 @@
     {{> "pswp"}}
 {{/is}}
 
-<script src="/blog/assets/built/main.min.js?v=20260911"></script>
+<script src="/blog/assets/built/main.min.js?v=b0ad0bf1"></script>
 
 {{ghost_foot}}
 

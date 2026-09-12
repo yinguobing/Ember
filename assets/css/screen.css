@@ -2008,9 +2008,15 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     background-color: var(--color-black);
 }
 
-/* Premium badge: keep dark background */
+/* Premium badge: keep a dark chip on dark themes so the accent text stays legible */
 .has-light-text .gh-card-premium-badge {
-    background-color: var(--color-black);
+    background-color: #15171a;
+    color: var(--ghost-accent-color, #D4A574);
+}
+
+/* Member badge on dark themes: slightly lighter surface, still low-key */
+.has-light-text .gh-card-member-badge {
+    background: rgba(255, 255, 255, 0.18);
     color: var(--color-white);
 }
 
@@ -2126,27 +2132,74 @@ body[style*="overflow: hidden"] #ghost-portal-root iframe {
     display: none;
 }
 
-/* Premium Badge (Paid Post Star)
-/* ---------------------------------------------------------- */
-.gh-card-premium-badge {
+/* Access-tier badges on cards — "门槛阶梯"
+ *   公开文章   → 不加标记（默认态，不标记才是编辑自信）
+ *   免费会员   → .gh-card-member-badge   低调中性
+ *   课程会员   → .gh-card-premium-badge  深底金字，强标记
+ * 徽章挂在卡片容器上（.gh-card-small / .gh-card-more / .gh-card-image-holder，
+ * 三者都有 position: relative），因此在「无封面图」时不会丢标记。
+ * ---------------------------------------------------------- */
+.gh-card-premium-badge,
+.gh-card-member-badge {
     position: absolute;
     top: 8px;
     right: 8px;
-    width: 28px;
-    height: 28px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    background: var(--color-darker-gray, #15171a);
-    color: var(--color-white, #fff);
-    font-size: 1.4rem;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    letter-spacing: 0;
     z-index: 10;
 }
 
+/* 课程会员：深底 + 站点强调色文字（浅色/深色底都够对比） */
+.gh-card-premium-badge {
+    padding: 5px 8px;
+    font-size: 1.15rem;
+    background: var(--color-darker-gray, #15171a);
+    color: var(--ghost-accent-color, #D4A574);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.28);
+}
+
+/* 免费会员：中性低调，小一号、细一档 —— 不与付费档抢注意力。
+ * 底色用纯黑 45% 透明度而非 --color-mid-gray：后者在深色主题下会变成
+ * rgba(255,255,255,.3)，白字压白底不可读。 */
+.gh-card-member-badge {
+    padding: 4px 7px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0.52);
+    color: var(--color-white, #fff);
+}
+
+/* 窄屏：两档各收一档，避免在小卡片上压住封面主体 */
+@media (max-width: 480px) {
+    .gh-card-premium-badge,
+    .gh-card-member-badge {
+        top: 6px;
+        right: 6px;
+    }
+
+    .gh-card-premium-badge {
+        padding: 4px 6px;
+        font-size: 1.05rem;
+    }
+
+    .gh-card-member-badge {
+        padding: 3px 5px;
+        font-size: 0.95rem;
+    }
+}
+
 /* Featured Post Badge
-/* ---------------------------------------------------------- */
+ * 注意：只用 ::after 挂在图片容器上 —— **无封面图的精选文章拿不到星标**。
+ * 2026-09-12 曾试图改挂到卡片容器（.featured::after），但无封面图时
+ * ★ 会与左上角的 .gh-card-tag 重叠（实测），故撤回。本站 55 篇精选
+ * 全有封面图，现状无影响；若将来出现无封面图的精选，再单独处理。
+ * ---------------------------------------------------------- */
 .gh-card-large.featured .gh-card-image-holder::after,
 .gh-card-small.featured .gh-card-small-image::after,
 .gh-card-more.featured .gh-card-more-image::after {

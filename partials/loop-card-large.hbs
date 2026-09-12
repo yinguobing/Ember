@@ -13,12 +13,17 @@
                      alt="{{title}}" 
                      loading="lazy">
             </div>
-            {{#match visibility "paid"}}
-            <span class="gh-card-premium-badge" title="付费文章">🌟</span>
-            {{/match}}
         {{/if}}
-    </div>
-    
+
+        {{!-- 门槛阶梯：公开不标 / 免费会员低调 / 课程会员强标。
+             徽章放在 {{#if feature_image}} 之外 —— 无封面图的文章同样有标记。
+             绝对定位相对 .gh-card-image-holder（已有 position: relative）。 --}}
+        {{#match visibility "paid"}}
+        <span class="gh-card-premium-badge" title="课程会员专享">课程会员</span>
+        {{else match visibility "members"}}
+        <span class="gh-card-member-badge" title="免费会员可读">会员</span>
+        {{/match}}
+    </div>    
     <div class="gh-card-content">
         {{#primary_tag}}
             <a href="{{url}}" class="gh-card-tag">{{name}}</a>
