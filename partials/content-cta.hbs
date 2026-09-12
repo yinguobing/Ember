@@ -1,0 +1,29 @@
+{{{html}}}
+<aside class="gh-post-upgrade-cta">
+    <div class="gh-post-upgrade-cta-content" style="background-color: {{@site.accent_color}}">
+        {{#has visibility="paid"}}
+            {{#is "page"}}
+                <h2>{{t "This page is for paying subscribers only"}}</h2>
+            {{else}}
+                <h2>{{t "This post is for paying subscribers only"}}</h2>
+            {{/is}}
+        {{/has}}
+        {{#has visibility="members"}}
+            {{#is "page"}}
+                <h2>{{t "This page is for subscribers only"}}</h2>
+            {{else}}
+                <h2>{{t "This post is for subscribers only"}}</h2>
+            {{/is}}
+        {{/has}}
+        {{#has visibility="tiers"}}
+            {{#is "page"}}
+                <h2>{{{t "This page is for subscribers on the {tiers} only" tiers=(tiers separator=", " lastSeparator=(t " and "))}}}</h2>
+            {{else}}
+                <h2>{{{t "This post is for subscribers on the {tiers} only" tiers=(tiers separator=", " lastSeparator=(t " and "))}}}</h2>
+            {{/is}}
+        {{/has}}
+        {{!-- 2026-09-12: 上方原有的「Subscribe now / 已有账户？登录」按钮已移除。
+             站点按公安备案「非交互式」口径运营，内容闸门只说明状态，不再提供账号入口。
+             要恢复：把核心的 {{#if @member}} … {{else}} … {{/if}} 按钮分支加回此处即可。 --}}
+    </div>
+</aside>
