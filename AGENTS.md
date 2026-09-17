@@ -181,6 +181,16 @@ Or deploy to Ghost(Pro) via GitHub integration.
 
 ## Release Process
 
+> ⚠️ **打完 zip 必须验二进制没被毁**（2026-09-17 事故）：Gulp 5 默认按 UTF-8 解码文件内容，
+> 不传 `{encoding: false}` 就会把 woff/woff2/png/gif 里的非法字节替换成 U+FFFD（EF BF BD），
+> 字体文件还会膨胀（Inter regular woff2：16708 → 30110 字节），浏览器静默回退系统字体。
+> `gulpfile.js` 的 `zipper` 已加 `{encoding: false}`。发版前自查：
+> ```bash
+> unzip -p dist/ember.zip assets/fonts/inter-v12-latin-regular.woff2 | wc -c   # 必须是 16708
+> unzip -p dist/ember.zip assets/fonts/inter-v12-latin-regular.woff2 | xxd -p | tr -d '\n' | grep -c efbfbd  # 必须是 0
+> ```
+
+
 ```bash
 # 1. Update version in package.json
 # 2. Build and test
