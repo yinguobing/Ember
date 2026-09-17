@@ -1,0 +1,12 @@
+# 主题级 robots.txt（2026-09-11 加）
+# 说明：Ghost 自带的默认 robots.txt 是模板，路径写的是站根（/ghost/、/email/ ...），
+# 但本站博客挂在 /blog 子目录下，那些规则其实匹配不到；而且默认模板只认 {{blog-url}}，
+# 主题里这份是静态文件、不做变量替换，所以这里把 sitemap 写死。
+User-agent: *
+Sitemap: https://yinguobing.com/blog/sitemap.xml
+Disallow: /blog/ghost/
+Disallow: /blog/email/
+Disallow: /blog/members/api/comments/counts/
+Disallow: /blog/r/
+Disallow: /blog/webmentions/receive/
+Disallow: /.ghost/analytics/api/
