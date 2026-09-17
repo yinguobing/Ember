@@ -81,13 +81,17 @@ function js(done) {
 function zipper(done) {
     const filename = require('./package.json').name + '.zip';
 
+    // ⚠️ {encoding: false} 是必须的 —— Gulp 5 / vinyl-fs 默认把文件内容按 UTF-8 解码，
+    // 打 zip 时会把字体（woff/woff2）、图片这类二进制文件毁掉：非法字节被替换成
+    // U+FFFD（EF BF BD），文件还会膨胀（Inter regular woff2：16708 → 30110 字节），
+    // 浏览器解析失败、静默回退系统字体。2026-09-17 线上字体全坏就是这么来的。
     pump([
         src([
             '**',
             '!node_modules', '!node_modules/**',
             '!dist', '!dist/**',
             '!yarn-error.log'
-        ]),
+        ], {encoding: false}),
         zip(filename),
         dest('dist/')
     ], handleError(done));
