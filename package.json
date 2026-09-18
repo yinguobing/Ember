@@ -112,6 +112,18 @@
                 "type": "text",
                 "default": "0",
                 "group": "homepage"
+            },
+            "consulting_title": {
+                "type": "text"
+            },
+            "consulting_text": {
+                "type": "text"
+            },
+            "consulting_qr": {
+                "type": "image"
+            },
+            "consulting_url": {
+                "type": "text"
             }
         }
     },

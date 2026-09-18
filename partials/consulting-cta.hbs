@@ -1,18 +1,30 @@
+{{!-- 文末咨询 CTA 区块。
+     ⚠️ 2026-09-19：本区块改为**由主题设置驱动**，主题文件本身不含任何站点专属内容。
+     背景：此前这里的自我介绍、二维码、外链都是硬编码的，任何人克隆本主题都会把原作者的
+     个人身份挂到自己站上（实测有站点整站搬运），既尴尬也不可维护。
+     现在是「空默认」：未在 Design → Theme settings 填 consulting_text 的站点，整块不渲染。
+     字段（见 package.json 的 config.custom）：consulting_title / consulting_text /
+     consulting_qr / consulting_url。 --}}
+{{#if @custom.consulting_text}}
 <section class="gh-consulting-cta gh-canvas">
     <hr class="gh-consulting-cta-divider">
-    <h3 class="gh-consulting-cta-title">{{t "有AI相关的想法，但不知道怎么落地？"}}</h3>
-    <p class="gh-consulting-cta-desc">
-        {{t "我是国冰，独立AI开发者。十多年技术一线——半导体显示、智慧城市到自动驾驶；现在一个人+AI，接AI落地项目，从梳理需求到系统落地，陪你走通。"}}
-    </p>
+    {{#if @custom.consulting_title}}
+        <h3 class="gh-consulting-cta-title">{{@custom.consulting_title}}</h3>
+    {{/if}}
+    <p class="gh-consulting-cta-desc">{{@custom.consulting_text}}</p>
     <div class="gh-consulting-cta-actions">
-        <span class="gh-consulting-qr">
-            <span class="gh-consulting-cta-btn gh-consulting-cta-btn-primary" role="button" tabindex="0">
-                {{> "icons/wechat"}}
-                {{t "微信聊聊"}}
+        {{#if @custom.consulting_qr}}
+            <span class="gh-consulting-qr">
+                <span class="gh-consulting-cta-btn gh-consulting-cta-btn-primary" role="button" tabindex="0">
+                    {{> "icons/wechat"}}
+                    {{t "微信聊聊"}}
+                </span>
+                <img src="{{@custom.consulting_qr}}" alt="{{t "微信二维码"}}" class="gh-consulting-qr-img" loading="lazy">
             </span>
-            <img src="https://yinguobing.com/assets/wechat.webp" alt="{{t "微信二维码"}}" class="gh-consulting-qr-img" loading="lazy">
-        </span>
-        <a href="https://yinguobing.com" class="gh-consulting-cta-btn">{{t "看我能做什么"}}</a>
+        {{/if}}
+        {{#if @custom.consulting_url}}
+            <a href="{{@custom.consulting_url}}" class="gh-consulting-cta-btn">{{t "看我能做什么"}}</a>
+        {{/if}}
     </div>
 </section>
 <script>
@@ -34,3 +46,4 @@
     });
 })();
 </script>
+{{/if}}
